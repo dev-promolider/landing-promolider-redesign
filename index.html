@@ -1,0 +1,2782 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#EEF1F4">
+  <title>PROMOLIDER™</title>
+  <meta name="description"
+    content="PROMOLIDER™ — Plataforma de educación digital. Herramientas para crear, publicar y distribuir contenido educativo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/motion.css">
+  <script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {document.documentElement.classList.add('intro'); setTimeout(() => document.documentElement.classList.remove('intro', 'intro-play'), 5000)}</script>
+  <style>
+    :root {
+      --u: min(100vw / 1280, 100vh / 960);
+      --ink: #0b0f14;
+      --soft: #1b2027;
+      --muted: #5d646e;
+      --frame: #EEF1F4;
+      --primary: #1AE600;
+      --primary-ink: #0f7d00;
+      --knob: #2c3a2c;
+      --font: 'Poppins', system-ui, sans-serif;
+      --ease: cubic-bezier(.16, 1, .3, 1);
+    }
+
+    @supports (height:100dvh) {
+      :root {
+        --u: min(100vw / 1280, 100dvh / 960)
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%
+    }
+
+    body {
+      margin: 0;
+      background: var(--frame);
+      color: var(--ink);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden
+    }
+
+    img,
+    svg,
+    video {
+      display: block;
+      max-width: 100%
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    button {
+      font-family: inherit
+    }
+
+    ::selection {
+      background: var(--primary);
+      color: #000
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--primary-ink);
+      outline-offset: 3px
+    }
+
+    .tm {
+      font-size: .42em;
+      vertical-align: 1.1em;
+      font-weight: 400;
+      margin-left: .04em
+    }
+
+    .fade {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .9s var(--ease), transform .9s var(--ease)
+    }
+
+    .fade.visible {
+      opacity: 1;
+      transform: none
+    }
+
+    .d1 {
+      transition-delay: .12s
+    }
+
+    .d2 {
+      transition-delay: .24s
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, .62);
+      border: 1px solid rgba(255, 255, 255, .85);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      box-shadow: 0 0 0 1px rgba(120, 135, 150, .16), 0 2px 10px rgba(20, 30, 40, .05)
+    }
+
+    .knob {
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--knob);
+      color: #fff;
+      flex: none
+    }
+
+    .knob svg {
+      width: 42%;
+      height: 42%
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      height: 100vh;
+      height: 100svh;
+      min-height: 600px;
+      overflow: hidden;
+      isolation: isolate;
+      background: var(--frame)
+    }
+
+    .hero .hero-video {
+      z-index: 0;
+      filter: saturate(.96)
+    }
+
+    .hero .tint {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(238, 241, 244, .55) 0%, rgba(238, 241, 244, .1) 45%, rgba(238, 241, 244, 0) 70%)
+    }
+
+    /* Respaldo: esfera de cristal atravesada por una lámina (CSS) */
+    .crystal {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(ellipse at 60% 45%, #ffffff 0%, #f1f4f7 45%, #e3e8ee 100%);
+      overflow: hidden
+    }
+
+    .crystal .orb {
+      position: absolute;
+      left: 58%;
+      top: 47%;
+      width: calc(520*var(--u));
+      height: calc(520*var(--u));
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 34% 28%, rgba(255, 255, 255, .95) 0 6%, rgba(255, 255, 255, 0) 14%),
+        radial-gradient(circle at 70% 78%, rgba(26, 230, 0, .18) 0, rgba(26, 230, 0, 0) 30%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, .1) 55%, rgba(190, 205, 220, .55) 72%, rgba(255, 255, 255, .9) 76%, rgba(170, 185, 200, .35) 80%, rgba(255, 255, 255, 0) 82%);
+      box-shadow: inset 0 0 calc(60*var(--u)) rgba(255, 255, 255, .9), inset calc(-30*var(--u)) calc(-40*var(--u)) calc(80*var(--u)) rgba(150, 170, 190, .35), 0 calc(60*var(--u)) calc(90*var(--u)) rgba(40, 60, 80, .12);
+      animation: breathe 10s ease-in-out infinite
+    }
+
+    .crystal .caustic {
+      position: absolute;
+      inset: 8%;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent 0 12%, rgba(26, 230, 0, .16) 16%, transparent 22%, rgba(255, 255, 255, .6) 40%, transparent 48%, rgba(26, 230, 0, .10) 70%, transparent 78%);
+      filter: blur(calc(18*var(--u)));
+      mix-blend-mode: multiply;
+      animation: spin 18s linear infinite
+    }
+
+    .crystal .blade {
+      position: absolute;
+      left: 58%;
+      top: 47%;
+      width: calc(900*var(--u));
+      height: calc(26*var(--u));
+      transform: translate(-50%, -50%) rotate(-24deg);
+      border-radius: calc(30*var(--u));
+      background: linear-gradient(180deg, rgba(255, 255, 255, .95), rgba(210, 222, 232, .55) 50%, rgba(255, 255, 255, .85));
+      box-shadow: 0 calc(18*var(--u)) calc(40*var(--u)) rgba(40, 60, 80, .12), inset 0 1px 0 #fff;
+      backdrop-filter: blur(4px)
+    }
+
+    .crystal .shine {
+      position: absolute;
+      left: 58%;
+      top: 47%;
+      width: calc(900*var(--u));
+      height: calc(26*var(--u));
+      transform: translate(-50%, -50%) rotate(-24deg);
+      border-radius: calc(30*var(--u));
+      overflow: hidden
+    }
+
+    .crystal .shine::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 18%;
+      background: linear-gradient(90deg, transparent, rgba(26, 230, 0, .45), transparent);
+      animation: sweep 5s ease-in-out infinite
+    }
+
+    @keyframes breathe {
+      50% {
+        transform: translate(-50%, -50%) scale(1.015)
+      }
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    @keyframes sweep {
+      from {
+        left: -20%
+      }
+
+      to {
+        left: 110%
+      }
+    }
+
+    .frame {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: calc(46*var(--u)) calc(64*var(--u)) calc(60*var(--u))
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: calc(20*var(--u))
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: calc(10*var(--u));
+      font-size: max(calc(21*var(--u)), 15px);
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: var(--ink)
+    }
+
+    .brand svg {
+      width: max(calc(34*var(--u)), 26px);
+      height: auto;
+      color: var(--primary)
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: calc(26*var(--u));
+      height: max(calc(62*var(--u)), 48px);
+      padding: 0 max(calc(30*var(--u)), 20px);
+      border-radius: 999px
+    }
+
+    .nav a {
+      display: flex;
+      align-items: center;
+      gap: calc(9*var(--u));
+      font-size: max(calc(15*var(--u)), 13px);
+      font-weight: 500;
+      letter-spacing: -.02em;
+      color: #20262e
+    }
+
+    .nav svg {
+      width: max(calc(19*var(--u)), 15px);
+      height: auto
+    }
+
+    .nav hr {
+      width: 1.5px;
+      height: calc(28*var(--u));
+      margin: 0;
+      border: 0;
+      background: #cfd5dc
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: calc(16*var(--u));
+      height: max(calc(66*var(--u)), 50px);
+      padding: 0 max(calc(9*var(--u)), 6px) 0 max(calc(32*var(--u)), 20px);
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: max(calc(17*var(--u)), 14px);
+      letter-spacing: -.02em;
+      box-shadow: 0 calc(10*var(--u)) calc(24*var(--u)) rgba(11, 15, 20, .18);
+      transition: transform .35s var(--ease)
+    }
+
+    .top {
+      position: relative
+    }
+
+    /* Barra lateral de secciones: discreta, 9 puntos, el activo se estira en verde */
+    .rail {
+      position: fixed;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 8px 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .42);
+      border: 1px solid rgba(255, 255, 255, .6);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 6px 20px -8px rgba(10, 20, 30, .25)
+    }
+
+    .rail a {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 14px;
+      height: 14px
+    }
+
+    .rail a::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #8f979f;
+      transition: background .3s, transform .3s
+    }
+
+    .rail a:hover::before {
+      background: #20262e;
+      transform: scale(1.3)
+    }
+
+    .rail a.on::before {
+      background: transparent
+    }
+
+    .rail .tip {
+      position: absolute;
+      left: 24px;
+      top: 50%;
+      transform: translate(-4px, -50%);
+      white-space: nowrap;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #0b0f14;
+      color: #fff;
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: .01em;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s, transform .2s
+    }
+
+    .rail a:hover .tip,
+    .rail a:focus-visible .tip {
+      opacity: 1;
+      transform: translate(0, -50%)
+    }
+
+    .rail .thumb {
+      position: absolute;
+      left: 50%;
+      width: 5px;
+      margin-left: -2.5px;
+      top: 8px;
+      height: 14px;
+      border-radius: 999px;
+      background: var(--primary);
+      box-shadow: 0 0 10px rgba(26, 230, 0, .6);
+      transition: top .5s var(--ease)
+    }
+
+    .rail .thumb {
+      height: 14px
+    }
+
+    @media (min-width:1101px) and (max-width:1300px) {
+      .container {
+        padding-left: 56px
+      }
+    }
+
+    @media (max-width:1100px),
+    (max-height:420px) {
+      .rail {
+        display: none
+      }
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: calc(10*var(--u))
+    }
+
+    .ext {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-right: calc(6*var(--u))
+    }
+
+    .ext a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      font-size: max(calc(15*var(--u)), 13px);
+      font-weight: 500;
+      letter-spacing: -.01em;
+      color: #20262e;
+      transition: background .25s, color .25s
+    }
+
+    .ext a svg {
+      width: 11px;
+      height: 11px;
+      color: #0f7d00;
+      transition: transform .25s
+    }
+
+    .ext a:hover {
+      background: rgba(255, 255, 255, .75)
+    }
+
+    .ext a:hover svg {
+      transform: translate(1px, -1px)
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .85);
+      background: rgba(255, 255, 255, .7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      cursor: pointer;
+      padding: 0
+    }
+
+    .burger i {
+      display: block;
+      width: 18px;
+      height: 1.8px;
+      border-radius: 2px;
+      background: #20262e;
+      transition: transform .3s
+    }
+
+    .burger[aria-expanded="true"] i:first-child {
+      transform: translateY(3.9px) rotate(45deg)
+    }
+
+    .burger[aria-expanded="true"] i:last-child {
+      transform: translateY(-3.9px) rotate(-45deg)
+    }
+
+    .mmenu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      z-index: 20;
+      width: min(300px, calc(100vw - 44px));
+      padding: 12px;
+      border-radius: 24px;
+      flex-direction: column
+    }
+
+    .mmenu a {
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #20262e
+    }
+
+    .mmenu a:hover {
+      background: rgba(255, 255, 255, .7)
+    }
+
+    .mmenu a[target] {
+      color: #0f7d00
+    }
+
+    .mmenu hr {
+      border: 0;
+      height: 1px;
+      background: #d7dde3;
+      margin: 6px 8px
+    }
+
+    .mmenu.open {
+      display: flex
+    }
+
+    .cta .knob {
+      width: max(calc(48*var(--u)), 36px);
+      height: max(calc(48*var(--u)), 36px);
+      background: var(--primary);
+      color: #000
+    }
+
+    .cta:hover {
+      transform: translateY(-2px)
+    }
+
+    .mid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: calc(40*var(--u))
+    }
+
+    .eyebrow {
+      font-size: max(calc(16*var(--u)), 13px);
+      font-weight: 500;
+      letter-spacing: -.01em;
+      color: var(--muted);
+      margin: 0 0 calc(18*var(--u))
+    }
+
+    .eyebrow b {
+      color: var(--primary-ink);
+      font-weight: 600
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: max(calc(80*var(--u)), 34px);
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: -.05em;
+      color: var(--ink)
+    }
+
+    .hero h1 strong {
+      font-weight: 500
+    }
+
+    .tagrow {
+      display: flex;
+      align-items: center;
+      gap: calc(16*var(--u));
+      margin-top: calc(30*var(--u))
+    }
+
+    .play {
+      display: grid;
+      place-items: center;
+      width: max(calc(52*var(--u)), 40px);
+      height: max(calc(52*var(--u)), 40px);
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 calc(6*var(--u)) calc(18*var(--u)) rgba(20, 30, 40, .1);
+      flex: none
+    }
+
+    .play svg {
+      width: 32%;
+      height: auto
+    }
+
+    .tag {
+      font-size: max(calc(23*var(--u)), 17px);
+      font-weight: 500;
+      letter-spacing: -.03em;
+      color: var(--soft)
+    }
+
+    .lead {
+      max-width: calc(560*var(--u));
+      min-width: 0;
+      margin: calc(20*var(--u)) 0 0;
+      font-size: max(calc(16*var(--u)), 14px);
+      line-height: 1.65;
+      color: var(--muted)
+    }
+
+    .panel {
+      position: relative;
+      width: max(calc(290*var(--u)), 240px);
+      border-radius: calc(28*var(--u));
+      padding: max(calc(28*var(--u)), 20px);
+      background: linear-gradient(135deg, rgba(255, 255, 255, .55), rgba(255, 255, 255, .18));
+      border: 1px solid rgba(255, 255, 255, .7);
+      backdrop-filter: blur(34px) saturate(112%);
+      -webkit-backdrop-filter: blur(34px) saturate(112%);
+      box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .6), 0 calc(18*var(--u)) calc(40*var(--u)) rgba(20, 30, 40, .08)
+    }
+
+    .panel .row1 {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between
+    }
+
+    .panel .p-title {
+      font-size: max(calc(22*var(--u)), 17px);
+      font-weight: 500;
+      letter-spacing: -.03em;
+      line-height: 1.1
+    }
+
+    .panel .dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--primary);
+      margin-left: 8px;
+      vertical-align: 2px;
+      box-shadow: 0 0 10px var(--primary)
+    }
+
+    .panel .seal {
+      width: max(calc(70*var(--u)), 54px);
+      height: max(calc(70*var(--u)), 54px);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .92);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 calc(26*var(--u)) calc(8*var(--u)) rgba(255, 255, 255, .5)
+    }
+
+    .panel .seal svg {
+      width: 44%;
+      height: auto;
+      color: var(--primary-ink)
+    }
+
+    .panel .p-sub {
+      margin: calc(10*var(--u)) 0 calc(26*var(--u));
+      font-size: max(calc(16*var(--u)), 13px);
+      line-height: 1.35;
+      color: #4e5663
+    }
+
+    .panel .scale {
+      display: flex;
+      justify-content: space-between;
+      font-size: max(calc(12*var(--u)), 10.5px);
+      font-weight: 500;
+      letter-spacing: .02em;
+      color: #5a6370
+    }
+
+    .panel .track {
+      margin-top: calc(10*var(--u));
+      height: 8px;
+      border-radius: 999px;
+      background: #dfe5ea;
+      overflow: hidden
+    }
+
+    .panel .track i {
+      display: block;
+      height: 100%;
+      width: 20%;
+      border-radius: 999px;
+      background: var(--primary);
+      transform-origin: left;
+      animation: fill 6s var(--ease) infinite
+    }
+
+    @keyframes fill {
+      0% {
+        width: 20%
+      }
+
+      20% {
+        width: 40%
+      }
+
+      40% {
+        width: 60%
+      }
+
+      60% {
+        width: 80%
+      }
+
+      80%,
+      95% {
+        width: 100%
+      }
+
+      100% {
+        width: 20%
+      }
+    }
+
+    .panel .cap {
+      margin: calc(10*var(--u)) 0 0;
+      font-size: max(calc(12*var(--u)), 10.5px);
+      color: #7a828d
+    }
+
+    .bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: calc(30*var(--u));
+      flex-wrap: wrap
+    }
+
+    .stats {
+      display: flex;
+      align-items: flex-end;
+      gap: calc(26*var(--u))
+    }
+
+    .stat {
+      display: flex;
+      align-items: flex-end;
+      gap: calc(18*var(--u))
+    }
+
+    .num {
+      font-size: max(calc(100*var(--u)), 56px);
+      font-weight: 200;
+      line-height: .82;
+      letter-spacing: -.04em
+    }
+
+    .lbl {
+      font-size: max(calc(18*var(--u)), 13px);
+      line-height: 1.25;
+      color: #3a424d;
+      padding-bottom: calc(4*var(--u))
+    }
+
+    .slash {
+      width: calc(23*var(--u));
+      height: max(calc(75*var(--u)), 48px);
+      background: linear-gradient(to top left, transparent calc(50% - 1px), #a8b2bd calc(50% - 1px), #a8b2bd calc(50% + 1px), transparent calc(50% + 1px))
+    }
+
+    .meet {
+      display: flex;
+      align-items: center;
+      gap: calc(14*var(--u));
+      height: max(calc(84*var(--u)), 62px);
+      padding: 0 max(calc(12*var(--u)), 8px);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .34);
+      border: 1px solid rgba(255, 255, 255, .65);
+      backdrop-filter: blur(34px);
+      -webkit-backdrop-filter: blur(34px);
+      box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .5), 0 calc(8*var(--u)) calc(22*var(--u)) rgba(20, 30, 40, .05);
+      transition: transform .35s var(--ease)
+    }
+
+    .meet:hover {
+      transform: translateY(-2px)
+    }
+
+    .meet .thumb {
+      width: max(calc(62*var(--u)), 46px);
+      height: max(calc(62*var(--u)), 46px);
+      border-radius: 50%;
+      flex: none;
+      background: radial-gradient(circle at 35% 30%, #fff 0 12%, rgba(255, 255, 255, 0) 30%), radial-gradient(circle at 60% 70%, rgba(26, 230, 0, .45), transparent 55%), radial-gradient(circle, #e8eef3 50%, #c9d3dc 100%);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6)
+    }
+
+    .meet b {
+      font-size: max(calc(16*var(--u)), 13.5px);
+      font-weight: 500;
+      letter-spacing: -.03em;
+      color: #1c232c;
+      max-width: calc(250*var(--u));
+      line-height: 1.2
+    }
+
+    .meet .knob {
+      width: max(calc(50*var(--u)), 38px);
+      height: max(calc(50*var(--u)), 38px);
+      background: var(--ink)
+    }
+
+    .micro {
+      margin: calc(10*var(--u)) 0 0;
+      font-size: max(calc(12.5*var(--u)), 11px);
+      color: #6c7480;
+      text-align: right
+    }
+
+    /* SECCIONES (negro / blanco) */
+    .sec {
+      position: relative;
+      padding: 140px 0;
+      overflow-x: clip
+    }
+
+    .dark {
+      background: #07090b;
+      color: #fff
+    }
+
+    .light {
+      background: #fff;
+      color: var(--ink)
+    }
+
+    .pale {
+      background: var(--frame);
+      color: var(--ink)
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 36px
+    }
+
+    .center {
+      text-align: center
+    }
+
+    .kick {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 34px;
+      padding: 0 16px 0 6px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 26px
+    }
+
+    .kick b {
+      display: grid;
+      place-items: center;
+      height: 24px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #000;
+      font-size: 11px;
+      font-weight: 600
+    }
+
+    .light .kick,
+    .pale .kick {
+      background: #fff;
+      border: 1px solid #e3e7eb;
+      color: var(--muted)
+    }
+
+    .dark .kick {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .12);
+      color: rgba(255, 255, 255, .7)
+    }
+
+    .T {
+      font-size: clamp(36px, 4.8vw, 70px);
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: -.05em;
+      margin: 0
+    }
+
+    .T strong {
+      font-weight: 500
+    }
+
+    .T .g {
+      color: var(--primary-ink);
+      font-weight: 500
+    }
+
+    .dark .T .g {
+      color: var(--primary)
+    }
+
+    .P {
+      font-size: 17px;
+      line-height: 1.75;
+      margin: 0
+    }
+
+    .light .P,
+    .pale .P {
+      color: var(--muted)
+    }
+
+    .dark .P {
+      color: rgba(255, 255, 255, .62)
+    }
+
+    .P b {
+      font-weight: 500
+    }
+
+    .light .P b,
+    .pale .P b {
+      color: var(--ink)
+    }
+
+    .dark .P b {
+      color: #fff
+    }
+
+    .gcard {
+      border-radius: 28px;
+      padding: 34px
+    }
+
+    .dark .gcard {
+      background: linear-gradient(135deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .02));
+      border: 1px solid rgba(255, 255, 255, .1)
+    }
+
+    .light .gcard {
+      background: #f4f6f8;
+      border: 1px solid #e6eaee
+    }
+
+    .pale .gcard {
+      background: rgba(255, 255, 255, .7);
+      border: 1px solid #fff;
+      box-shadow: 0 20px 40px -24px rgba(20, 30, 40, .18)
+    }
+
+    /* 02 reflejo (negro) */
+    .reflejo .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start
+    }
+
+    .reflejo .P+.P {
+      margin-top: 12px
+    }
+
+    .reflejo .truth {
+      margin-top: 30px;
+      font-size: clamp(22px, 2vw, 28px);
+      font-weight: 300;
+      letter-spacing: -.03em;
+      line-height: 1.3
+    }
+
+    .reflejo .truth strong {
+      font-weight: 500;
+      color: var(--primary)
+    }
+
+    .load {
+      display: grid;
+      gap: 12px
+    }
+
+    .load .it {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 22px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .08);
+      font-size: clamp(17px, 1.5vw, 20px);
+      font-weight: 400;
+      letter-spacing: -.02em
+    }
+
+    .load .it i {
+      flex: none;
+      width: 110px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .1);
+      overflow: hidden
+    }
+
+    .load .it i::after {
+      content: "";
+      display: block;
+      height: 100%;
+      width: 0;
+      background: #fff;
+      border-radius: 999px;
+      transition: width 1.3s var(--ease)
+    }
+
+    .load.visible .it i::after {
+      width: 100%
+    }
+
+    .load .it.last {
+      background: rgba(26, 230, 0, .08);
+      border-color: rgba(26, 230, 0, .3);
+      color: var(--primary)
+    }
+
+    .load .it.last i::after {
+      background: var(--primary)
+    }
+
+    .quote {
+      padding: 150px 0
+    }
+
+    .quote p {
+      max-width: 1060px;
+      margin: 0 auto;
+      font-size: clamp(32px, 4.4vw, 64px);
+      font-weight: 200;
+      line-height: 1.08;
+      letter-spacing: -.05em
+    }
+
+    .quote p strong {
+      font-weight: 500;
+      text-decoration: line-through;
+      text-decoration-color: var(--primary);
+      text-decoration-thickness: 4px
+    }
+
+    /* 03 cambio (claro) */
+    .cambio .head {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 64px
+    }
+
+    /* Tarjetas (blanca + negra) con gráficas de barras */
+    .pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px
+    }
+
+    .pair .gcard {
+      min-height: 340px;
+      display: flex;
+      flex-direction: column
+    }
+
+    .pair .w {
+      background: #fff;
+      border: 1px solid #fff;
+      box-shadow: 0 24px 50px -28px rgba(20, 30, 40, .22)
+    }
+
+    .pair .b {
+      background: #07090b;
+      color: #fff;
+      border-color: #07090b;
+      box-shadow: 0 24px 50px -28px rgba(0, 0, 0, .45)
+    }
+
+    .pair small {
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      opacity: .55
+    }
+
+    .pair h3 {
+      margin: 8px 0 0;
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: -.04em
+    }
+
+    .pair h3 strong {
+      font-weight: 500
+    }
+
+    .pair .b h3 strong {
+      color: var(--primary)
+    }
+
+    .pair .meter {
+      margin-top: auto;
+      padding-top: 28px;
+      display: flex;
+      gap: 5px;
+      height: 130px;
+      align-items: flex-end
+    }
+
+    .pair .meter i {
+      flex: 1;
+      border-radius: 4px 4px 0 0
+    }
+
+    .pair .w .meter i {
+      background: #c9ced4;
+      animation: blip 3s var(--ease) infinite;
+      transform-origin: bottom;
+      height: var(--h)
+    }
+
+    @keyframes blip {
+
+      0%,
+      100% {
+        transform: scaleY(.05)
+      }
+
+      30%,
+      50% {
+        transform: scaleY(1)
+      }
+    }
+
+    .pair .b .meter i {
+      background: var(--primary);
+      height: 0;
+      transition: height 1s var(--ease)
+    }
+
+    .pair.visible .b .meter i {
+      height: var(--h)
+    }
+
+    .pair p {
+      margin: 16px 0 0;
+      font-size: 15px;
+      opacity: .65
+    }
+
+    .cambio .closing {
+      margin-top: 56px;
+      font-size: clamp(22px, 2.2vw, 32px);
+      font-weight: 300;
+      letter-spacing: -.035em;
+      max-width: 900px;
+      line-height: 1.25
+    }
+
+    .cambio .closing strong {
+      font-weight: 500;
+      color: var(--primary-ink)
+    }
+
+    /* 04 roles (pálido, vidrio claro) */
+    .roles .head {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 64px;
+      align-items: end;
+      margin-bottom: 56px
+    }
+
+    .roles .sub {
+      font-size: clamp(20px, 1.8vw, 25px);
+      font-weight: 500;
+      letter-spacing: -.03em;
+      margin: 0 0 8px
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px
+    }
+
+    .role {
+      display: flex;
+      flex-direction: column;
+      min-height: 400px
+    }
+
+    .role .top2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px
+    }
+
+    .role .n {
+      font-size: 64px;
+      font-weight: 200;
+      letter-spacing: -.05em;
+      line-height: .8
+    }
+
+    .role .ico {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 20px rgba(20, 30, 40, .08)
+    }
+
+    .role .ico svg {
+      width: 24px;
+      height: 24px
+    }
+
+    .role h3 {
+      margin: 0 0 18px;
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: -.04em
+    }
+
+    .role dl {
+      margin: 0;
+      display: grid;
+      gap: 12px
+    }
+
+    .role dt {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #8a929c
+    }
+
+    .role dd {
+      margin: 3px 0 0;
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: #3b434d
+    }
+
+    .role .def {
+      margin-top: auto;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, .18);
+      font-size: 14.5px;
+      line-height: 1.6
+    }
+
+    .role.feat {
+      background: #07090b;
+      color: #fff;
+      border-color: #07090b
+    }
+
+    .role.feat .n {
+      color: var(--primary)
+    }
+
+    .role.feat dd,
+    .role.feat .def {
+      color: rgba(255, 255, 255, .72)
+    }
+
+    .role.feat dt {
+      color: rgba(255, 255, 255, .45)
+    }
+
+    /* 05 cómo (negro) */
+    .como .head {
+      max-width: 980px;
+      margin-bottom: 64px
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px
+    }
+
+    .fstep {
+      border-radius: 24px;
+      padding: 28px 24px;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .08);
+      transition: background .5s, border-color .5s, transform .5s var(--ease)
+    }
+
+    .fstep .k {
+      font-size: 54px;
+      font-weight: 200;
+      letter-spacing: -.05em;
+      line-height: .8;
+      color: rgba(255, 255, 255, .28);
+      transition: color .5s
+    }
+
+    .fstep h3 {
+      margin: 26px 0 10px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    .fstep p {
+      margin: 0;
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, .6)
+    }
+
+    .fstep p b {
+      color: #fff;
+      font-weight: 500
+    }
+
+    .fstep.on {
+      background: rgba(26, 230, 0, .08);
+      border-color: rgba(26, 230, 0, .4);
+      transform: translateY(-6px)
+    }
+
+    .fstep.on .k {
+      color: var(--primary)
+    }
+
+    /* 06 primer paso (claro) */
+    .paso .T {
+      font-size: clamp(48px, 7vw, 110px)
+    }
+
+    .paso .P {
+      max-width: 760px;
+      margin: 30px auto 0
+    }
+
+    /* Tu primer paso: cadena horizontal con fotos reales que llega a "Tú" */
+    .chain {
+      list-style: none;
+      margin: 64px auto 0;
+      padding: 0;
+      max-width: 1080px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center
+    }
+
+    .node {
+      flex: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 170px
+    }
+
+    .node .pic {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      padding: 5px;
+      background: linear-gradient(145deg, #ffffff, #dfe5ea);
+      box-shadow: 0 24px 44px -22px rgba(20, 30, 40, .45);
+      transition: transform .5s var(--ease)
+    }
+
+    .node:hover .pic {
+      transform: translateY(-6px)
+    }
+
+    .node .pic img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(.95)
+    }
+
+    .node .badge {
+      position: absolute;
+      right: 2px;
+      bottom: 6px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 0 4px #fff, 0 8px 18px rgba(26, 230, 0, .35)
+    }
+
+    .node .badge svg {
+      width: 18px;
+      height: 18px
+    }
+
+    .node .cap {
+      margin: 18px 0 0;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      line-height: 1.2;
+      text-align: center
+    }
+
+    .node .cap small {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #8a929c;
+      margin-bottom: 4px
+    }
+
+    .link {
+      flex: 1;
+      min-width: 30px;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      padding: 0 2px
+    }
+
+    .link span {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 2px;
+      border-radius: 2px;
+      background: repeating-linear-gradient(90deg, #c9d0d6 0 6px, transparent 6px 12px);
+      overflow: hidden
+    }
+
+    .link span::after {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -30%;
+      width: 30%;
+      height: 6px;
+      border-radius: 6px;
+      background: linear-gradient(90deg, transparent, var(--primary));
+      animation: travel 2.4s linear infinite
+    }
+
+    .link:nth-child(4) span::after {
+      animation-delay: .8s
+    }
+
+    .link.to span::after {
+      animation-delay: 1.6s
+    }
+
+    .link.to span::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: -4px;
+      border-left: 9px solid var(--primary);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent
+    }
+
+    .link.to span {
+      overflow: visible;
+      background: repeating-linear-gradient(90deg, rgba(26, 230, 0, .55) 0 6px, transparent 6px 12px)
+    }
+
+    @keyframes travel {
+      from {
+        left: -30%
+      }
+
+      to {
+        left: 100%
+      }
+    }
+
+    .node.you .pic {
+      background: radial-gradient(circle at 35% 30%, #b8ffae 0 14%, rgba(255, 255, 255, 0) 40%), radial-gradient(circle, #1AE600 55%, #12a300 100%);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 0 5px #fff, 0 28px 48px -20px rgba(26, 230, 0, .6)
+    }
+
+    .node.you .pic b {
+      position: relative;
+      z-index: 1;
+      font-size: 34px;
+      font-weight: 600;
+      color: #000;
+      letter-spacing: -.03em
+    }
+
+    .node.you .halo {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      animation: halo 2.8s var(--ease) infinite
+    }
+
+    .node.you .halo.h2 {
+      animation-delay: 1.4s
+    }
+
+    @keyframes halo {
+      from {
+        transform: scale(1);
+        opacity: .7
+      }
+
+      to {
+        transform: scale(1.6);
+        opacity: 0
+      }
+    }
+
+    .node.you .cap small {
+      color: #0f7d00
+    }
+
+    .paso .kicker {
+      margin-top: 36px;
+      font-size: clamp(22px, 2.2vw, 30px);
+      font-weight: 300;
+      letter-spacing: -.03em
+    }
+
+    .paso .kicker strong {
+      font-weight: 500;
+      color: var(--primary-ink)
+    }
+
+    /* 07 infraestructura (negro) */
+    .infra .head {
+      max-width: 1000px;
+      margin-bottom: 64px
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px
+    }
+
+    .tool {
+      display: flex;
+      flex-direction: column;
+      min-height: 360px
+    }
+
+    /* Íconos animados de la infraestructura */
+    .tool .glyph {
+      height: 150px;
+      margin: -8px 0 28px;
+      display: grid;
+      place-items: center
+    }
+
+    .tool .glyph+h3 {
+      margin-top: 0
+    }
+
+    .tool .glyph svg {
+      width: 150px;
+      height: 150px
+    }
+
+    .orbit-a {
+      transform-origin: 75px 75px;
+      animation: spin 14s linear infinite
+    }
+
+    .orbit-b {
+      transform-origin: 75px 75px;
+      animation: spin 9s linear infinite reverse
+    }
+
+    .beat {
+      transform-origin: 75px 75px;
+      animation: beat 2.4s var(--ease) infinite
+    }
+
+    @keyframes beat {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.08)
+      }
+    }
+
+    .dup circle {
+      fill: #3a3a3c;
+      animation: lit 3.6s var(--ease) infinite
+    }
+
+    .dup circle:nth-child(1) {
+      animation-delay: 0s
+    }
+
+    .dup circle:nth-child(2),
+    .dup circle:nth-child(3) {
+      animation-delay: .5s
+    }
+
+    .dup circle:nth-child(n+4) {
+      animation-delay: 1s
+    }
+
+    @keyframes lit {
+
+      0%,
+      8% {
+        fill: #3a3a3c
+      }
+
+      22%,
+      78% {
+        fill: var(--primary)
+      }
+
+      92%,
+      100% {
+        fill: #3a3a3c
+      }
+    }
+
+    .tool h3 {
+      margin: 40px 0 8px;
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -.04em
+    }
+
+    .tool .claim {
+      margin: 0 0 8px;
+      font-weight: 500;
+      color: var(--primary)
+    }
+
+    .tool p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, .62)
+    }
+
+    /* 08 co-creación (pálido) */
+    .cocrea .head {
+      max-width: 880px;
+      margin: 0 auto
+    }
+
+    .cocrea .head .P {
+      margin-top: 24px
+    }
+
+    .words {
+      max-width: 1100px;
+      margin: 96px auto;
+      font-size: clamp(32px, 4.4vw, 64px);
+      font-weight: 200;
+      line-height: 1.08;
+      letter-spacing: -.05em
+    }
+
+    .words .w {
+      opacity: .16;
+      transition: opacity .35s
+    }
+
+    .words .w.on {
+      opacity: 1
+    }
+
+    .words .w.g {
+      font-weight: 500;
+      color: var(--primary-ink)
+    }
+
+    .cocrea .two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      text-align: left
+    }
+
+    .cocrea .two p {
+      margin: 0;
+      font-size: 16.5px;
+      line-height: 1.7;
+      color: var(--muted)
+    }
+
+    .cocrea .two b {
+      color: var(--ink);
+      font-weight: 500
+    }
+
+    /* 09 cierre (negro) */
+    .cierre .T {
+      max-width: 1180px;
+      margin: 0 auto 30px;
+      font-size: clamp(24px, 4.3vw, 64px);
+      line-height: 1.06
+    }
+
+    .cierre .T .g {
+      display: block
+    }
+
+    .cierre .T,
+    .cierre .T .m-wrap,
+    .cierre .T .m-in,
+    .cierre .T .g {
+      text-wrap: balance
+    }
+
+    @media (max-width:370px) {
+      .cierre .T {
+        font-size: 22px
+      }
+    }
+
+    .cierre .P {
+      max-width: 700px;
+      margin: 0 auto 10px
+    }
+
+    .cierre .opens {
+      margin: 32px 0;
+      font-size: 22px;
+      font-weight: 500
+    }
+
+    .cierre .cta {
+      background: #fff;
+      color: #000;
+      height: 64px;
+      font-size: 16px;
+      padding: 0 8px 0 28px;
+      gap: 16px
+    }
+
+    .cierre .cta .knob {
+      width: 48px;
+      height: 48px
+    }
+
+    .cierre .micro {
+      text-align: center;
+      max-width: 520px;
+      margin: 16px auto 0;
+      color: rgba(255, 255, 255, .5);
+      font-size: 13px
+    }
+
+    footer {
+      position: relative;
+      overflow: hidden;
+      background: #07090b;
+      color: rgba(255, 255, 255, .58);
+      padding: 72px 0 90px;
+      font-size: 14px;
+      line-height: 1.7;
+      border-top: 1px solid rgba(255, 255, 255, .08)
+    }
+
+    .glowf {
+      position: absolute;
+      left: 50%;
+      top: -220px;
+      width: 900px;
+      height: 420px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse, rgba(26, 230, 0, .16), transparent 65%);
+      pointer-events: none
+    }
+
+    footer .container {
+      position: relative
+    }
+
+    .fgrid {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr 1fr 1.2fr;
+      gap: 48px;
+      padding-bottom: 44px;
+      border-bottom: 1px solid rgba(255, 255, 255, .1)
+    }
+
+    .flogo img {
+      height: 36px;
+      width: auto;
+      margin-bottom: 18px
+    }
+
+    .fabout p {
+      margin: 0 0 10px;
+      max-width: 380px
+    }
+
+    .fabout b {
+      color: #fff;
+      font-weight: 500
+    }
+
+    .fabout i {
+      color: rgba(255, 255, 255, .78)
+    }
+
+    footer h4 {
+      margin: 6px 0 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: .02em
+    }
+
+    footer h4.mt {
+      margin-top: 26px
+    }
+
+    .flinks {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 9px
+    }
+
+    .flinks a,
+    .mail {
+      color: rgba(255, 255, 255, .62);
+      transition: color .2s
+    }
+
+    .flinks a:hover,
+    .mail:hover {
+      color: var(--primary)
+    }
+
+    .social {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .social a {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .08);
+      color: #fff;
+      transition: background .25s, color .25s
+    }
+
+    .social a:hover {
+      background: var(--primary);
+      color: #000
+    }
+
+    .social svg {
+      width: 15px;
+      height: 15px
+    }
+
+    .flegal {
+      margin-top: 26px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, .1)
+    }
+
+    .flegal p {
+      margin: 0 0 14px;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .55)
+    }
+
+    .flegal p b {
+      color: #fff;
+      font-weight: 600
+    }
+
+    .flegal p a {
+      color: rgba(255, 255, 255, .75)
+    }
+
+    .flegal p a:hover {
+      color: var(--primary)
+    }
+
+    .flegal .flinks {
+      font-size: 13px;
+      gap: 7px
+    }
+
+    .fbottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-top: 22px;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, .4)
+    }
+
+    @media (max-width:899px) {
+      .fgrid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px
+      }
+
+      .fabout {
+        grid-column: 1/-1
+      }
+    }
+
+    @media (max-width:520px) {
+      .fgrid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-aspect-ratio:87/80),
+    (max-width:899px) {
+      :root {
+        --u: min(100vw / 880, 100vh / 1220)
+      }
+
+      .hero {
+        height: auto;
+        min-height: 100svh
+      }
+
+      .frame {
+        position: relative;
+        padding: 28px 22px 32px;
+        gap: 34px;
+        min-height: 100svh
+      }
+
+      .nav {
+        display: none
+      }
+
+      .burger {
+        display: flex
+      }
+
+      .mid {
+        grid-template-columns: 1fr;
+        gap: 28px
+      }
+
+      .panel {
+        justify-self: end
+      }
+
+      .bottom {
+        flex-direction: column;
+        align-items: stretch
+      }
+
+      .micro {
+        text-align: left
+      }
+
+      .crystal .orb {
+        left: 60%;
+        top: 40%;
+        width: 80vw;
+        height: 80vw
+      }
+
+      .crystal .blade,
+      .crystal .shine {
+        left: 60%;
+        top: 40%;
+        width: 160vw
+      }
+
+      .hero .tint {
+        background: linear-gradient(180deg, rgba(238, 241, 244, .2), rgba(238, 241, 244, .75) 60%)
+      }
+
+      .reflejo .grid,
+      .cambio .head,
+      .roles .head,
+      .pair,
+      .cocrea .two {
+        grid-template-columns: 1fr;
+        gap: 40px
+      }
+
+      .cards,
+      .tools {
+        grid-template-columns: 1fr
+      }
+
+      .flow {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .flow .fstep:last-child {
+        grid-column: 1/-1
+      }
+
+      .fstep {
+        min-height: 220px
+      }
+
+      .sec {
+        padding: 96px 0
+      }
+
+      .container {
+        padding: 0 20px
+      }
+    }
+
+    @media (max-width:1100px) {
+      .burger {
+        display: flex
+      }
+    }
+
+    @media (max-width:640px) {
+      .ext {
+        display: none
+      }
+    }
+
+    @media (max-width:860px) and (min-width:521px) {
+      .chain {
+        flex-wrap: wrap;
+        row-gap: 10px
+      }
+
+      .chain .link.to {
+        display: none
+      }
+    }
+
+    @media (max-width:520px) {
+      .cta span.t {
+        display: none
+      }
+
+      .stats {
+        gap: 14px
+      }
+
+      .flow {
+        grid-template-columns: 1fr
+      }
+
+      .chain {
+        flex-direction: column;
+        align-items: center
+      }
+
+      .link {
+        width: 2px;
+        min-width: 0;
+        height: 46px;
+        flex: none;
+        padding: 0
+      }
+
+      .link span {
+        width: 2px;
+        height: 100%;
+        background: repeating-linear-gradient(180deg, #c9d0d6 0 6px, transparent 6px 12px)
+      }
+
+      .link span::after {
+        left: -2px;
+        top: -30%;
+        width: 6px;
+        height: 30%;
+        background: linear-gradient(180deg, transparent, var(--primary));
+        animation-name: travelv
+      }
+
+      .link.to span::before {
+        right: -4px;
+        top: auto;
+        bottom: 0;
+        border-top: 9px solid var(--primary);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 0
+      }
+
+      .link.to span {
+        background: repeating-linear-gradient(180deg, rgba(26, 230, 0, .55) 0 6px, transparent 6px 12px)
+      }
+
+      @keyframes travelv {
+        from {
+          top: -30%
+        }
+
+        to {
+          top: 100%
+        }
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important
+      }
+
+      .fade {
+        opacity: 1;
+        transform: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="pl-mark" viewBox="0 0 200 220">
+      <path d="M18 196 V14 H98 A62 62 0 0 1 98 138 H86" fill="none" stroke="currentColor" stroke-width="20"
+        stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M18 196 L74 112" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" />
+      <path d="M54 80 L118 50 L114 118 Z" fill="currentColor" stroke="currentColor" stroke-width="8"
+        stroke-linejoin="round" />
+    </symbol>
+    <symbol id="chev" viewBox="0 0 18 18">
+      <path d="m6.6 3.6 6 5.4-6 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+  </svg>
+
+  <!-- 01 HERO -->
+  <section class="hero" id="inicio" aria-labelledby="h1" data-video-host>
+    <div class="crystal hero-fallback" aria-hidden="true">
+      <div class="orb">
+        <div class="caustic"></div>
+      </div>
+      <div class="blade"></div>
+      <div class="shine"></div>
+    </div>
+    <div class="tint"></div>
+
+    <div class="frame">
+      <header class="top">
+        <a class="brand hx" style="--d:.05s" href="#top" aria-label="PROMOLIDER inicio"><svg viewBox="0 0 200 220">
+            <use href="#pl-mark" />
+          </svg>PROMOLIDER</a>
+        <div class="actions hx" style="--d:.2s">
+          <nav class="ext" aria-label="Plataformas">
+            <a href="https://vcr.promolider.org/login" target="_blank" rel="noopener">Academia<svg viewBox="0 0 12 12"
+                aria-hidden="true">
+                <path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg></a>
+          </nav>
+          <a class="cta" href="https://crm.promolider.org/login" target="_blank" rel="noopener"><span class="t">Iniciar
+              sesión</span><span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c1.2-4 4.2-6 8-6s6.8 2 8 6" />
+              </svg></span></a>
+          <button class="burger" type="button" aria-label="Abrir menú" aria-expanded="false"
+            aria-controls="mmenu"><i></i><i></i></button>
+        </div>
+        <nav class="mmenu glass" id="mmenu" aria-label="Menú">
+          <a href="#inicio">Inicio</a><a href="#reflejo">El desafío</a><a href="#cambio">La solución</a><a
+            href="#roles">Roles de la plataforma</a><a href="#como">Cómo funciona</a><a href="#primer-paso">Primer
+            paso</a><a href="#infraestructura">Infraestructura</a><a href="#cocreacion">Modelo de colaboración</a><a
+            href="#cierre">Acceso a la plataforma</a>
+          <hr>
+          <a href="https://vcr.promolider.org/login" target="_blank" rel="noopener">Academia</a>
+          <a href="https://crm.promolider.org/login" target="_blank" rel="noopener">Iniciar sesión</a>
+        </nav>
+      </header>
+
+      <div class="mid" id="top">
+        <div>
+          <p class="eyebrow hx" style="--d:.3s"><b>PROMOLIDER™</b> — Plataforma de educación digital</p>
+          <h1 id="h1">
+            <span class="ln"><span class="ln-i" style="--d:.38s">Convierte tu conocimiento</span></span>
+            <span class="ln"><span class="ln-i" style="--d:.47s">en <strong>productos digitales</strong></span></span>
+            <span class="ln"><span class="ln-i" style="--d:.56s">y contenido educativo.</span></span>
+          </h1>
+          <div class="tagrow hx" style="--d:.75s">
+            <span class="play" aria-hidden="true"><svg viewBox="0 0 13 14">
+                <path d="M1.4 1.3 11.6 7 1.4 12.7z" fill="#0b1526" />
+              </svg></span>
+            <span class="tag">Tecnología para crear y distribuir contenido digital.</span>
+          </div>
+          <p class="lead hx" style="--d:.85s">Promolider conecta conocimiento, herramientas tecnológicas y
+            comercialización digital para facilitar la creación, publicación y distribución de cursos, masterclasses y
+            otros productos educativos.</p>
+        </div>
+        <aside class="panel hx" style="--d:.8s" aria-label="Plataforma de educación digital">
+          <div class="row1">
+            <span class="p-title">Educación<br>digital<span class="dot"></span></span>
+            <span class="seal" aria-hidden="true"><svg viewBox="0 0 200 220">
+                <use href="#pl-mark" />
+              </svg></span>
+          </div>
+          <p class="p-sub">Herramientas para creadores.<br>Contenido educativo digital.</p>
+          <div class="scale" aria-hidden="true">
+            <span>01</span><span>02</span><span>03</span><span>04</span><span>05</span></div>
+          <div class="track" aria-hidden="true"><i></i></div>
+          <p class="cap">Crea · Publica · Distribuye · Comercializa · Gestiona</p>
+        </aside>
+      </div>
+
+      <div class="bottom">
+        <div class="stats" aria-label="Funciones de la plataforma">
+          <div class="stat hx" style="--d:.95s"><span class="num">3</span><span class="lbl">Áreas
+              de<br>participación<br>en la plataforma</span></div>
+          <span class="slash hx" style="--d:1s" aria-hidden="true"></span>
+          <div class="stat hx" style="--d:1.05s"><span class="num">5</span><span class="lbl">Etapas de<br>gestión
+              digital</span></div>
+        </div>
+        <div class="hx" style="--d:1.15s">
+          <a class="meet js-cta" href="#roles"><span class="thumb" aria-hidden="true"></span><b>Conocer cómo funciona la
+              plataforma</b><span class="knob"><svg>
+                <use href="#chev" />
+              </svg></span></a>
+          <p class="micro">Conoce las funciones y modalidades de participación.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Barra lateral de secciones: el indicador verde se desliza a la sección visible -->
+  <nav class="rail" id="rail" aria-label="Secciones de la página">
+    <span class="thumb" aria-hidden="true"></span>
+    <a href="#inicio" data-s="inicio" aria-label="01 · Inicio"><span class="tip">01 · Inicio</span></a>
+    <a href="#reflejo" data-s="reflejo" aria-label="02 · El desafío"><span class="tip">02 · El desafío</span></a>
+    <a href="#cambio" data-s="cambio" aria-label="03 · La solución"><span class="tip">03 · La solución</span></a>
+    <a href="#roles" data-s="roles" aria-label="04 · Roles de la plataforma"><span class="tip">04 · Roles de la
+        plataforma</span></a>
+    <a href="#como" data-s="como" aria-label="05 · Cómo funciona"><span class="tip">05 · Cómo funciona</span></a>
+    <a href="#primer-paso" data-s="primer-paso" aria-label="06 · Primer paso"><span class="tip">06 · Primer
+        paso</span></a>
+    <a href="#infraestructura" data-s="infraestructura" aria-label="07 · Infraestructura"><span class="tip">07 ·
+        Infraestructura</span></a>
+    <a href="#cocreacion" data-s="cocreacion" aria-label="08 · Modelo de colaboración"><span class="tip">08 · Modelo de
+        colaboración</span></a>
+    <a href="#cierre" data-s="cierre" aria-label="09 · Acceso a la plataforma"><span class="tip">09 · Acceso a la
+        plataforma</span></a>
+  </nav>
+
+  <main>
+
+    <!-- 02 REFLEJO (negro) -->
+    <section class="sec dark reflejo" id="reflejo" aria-labelledby="h2r">
+      <div class="container grid">
+        <div>
+          <span class="kick"><b>02</b>El desafío</span>
+          <h2 id="h2r" class="T">Los desafíos de crear <strong>contenido digital.</strong></h2>
+          <div style="margin-top:36px">
+            <p class="P fade">Tienes conocimientos, experiencia y habilidades que pueden convertirse en cursos,
+              masterclasses y productos educativos.</p>
+            <p class="P fade">Sin embargo, crear contenido es solo el primer paso. También necesitas herramientas para
+              publicarlo, distribuirlo y gestionar su comercialización.</p>
+            <p class="truth fade"><strong>El conocimiento necesita una infraestructura adecuada.</strong> Organizar tus
+              productos digitales y gestionar su distribución requiere procesos y herramientas apropiadas.</p>
+          </div>
+        </div>
+        <div class="load fade" aria-label="Procesos de comercialización digital">
+          <div class="it">Crear y organizar contenido educativo.<i></i></div>
+          <div class="it">Publicar cursos y masterclasses.<i></i></div>
+          <div class="it">Presentar productos a potenciales compradores.<i></i></div>
+          <div class="it">Gestionar ventas y atención al cliente.<i></i></div>
+          <div class="it last">Coordinar las herramientas de comercialización.<i></i></div>
+        </div>
+      </div>
+    </section>
+    <section class="quote light center" aria-label="Mensaje destacado">
+      <div class="container">
+        <p class="fade">Transforma tus conocimientos en contenido educativo y utiliza herramientas digitales para
+          facilitar su distribución.</p>
+      </div>
+    </section>
+
+    <!-- 03 CAMBIO (pálido) -->
+    <section class="sec pale cambio" id="cambio" aria-labelledby="h3c">
+      <div class="container">
+        <div class="head">
+          <div><span class="kick"><b>03</b>La solución</span>
+            <h2 id="h3c" class="T">De crear contenido a desarrollar <span class="g">productos educativos
+                digitales.</span></h2>
+          </div>
+          <p class="P fade">Crear un curso o una masterclass es el primer paso. También necesitas herramientas para
+            organizar el contenido, presentarlo a potenciales compradores y gestionar su comercialización. Promolider
+            busca facilitar estos procesos mediante una infraestructura digital orientada a la educación y la
+            distribución de productos digitales.</p>
+        </div>
+        <div class="pair fade">
+          <div class="gcard w"><small>Creación</small>
+            <h3>Desarrollar <strong>contenido.</strong></h3>
+            <div class="meter" aria-hidden="true"></div>
+            <p>Preparar cursos, masterclasses y recursos educativos digitales.</p>
+          </div>
+          <div class="gcard b"><small>Comercialización</small>
+            <h3>Gestionar <strong>productos.</strong></h3>
+            <div class="meter" aria-hidden="true"></div>
+            <p>Organizar la presentación, distribución y comercialización de productos educativos mediante herramientas
+              digitales.</p>
+          </div>
+        </div>
+        <p class="closing fade">El objetivo es facilitar la gestión de tus <strong>productos educativos
+            digitales</strong> mediante procesos y herramientas adecuadas.</p>
+      </div>
+    </section>
+
+    <!-- 04 ROLES (blanco) -->
+    <section class="sec light roles" id="roles" aria-labelledby="h4r">
+      <div class="container">
+        <div class="head">
+          <div><span class="kick"><b>04</b>Roles de la plataforma</span>
+            <h2 id="h4r" class="T">Tres formas de participar. <strong>Una plataforma digital.</strong></h2>
+          </div>
+          <div>
+            <p class="sub">Elige el perfil que mejor se adapte a tu actividad.</p>
+            <p class="P">Creadores, afiliados y consumidores participan en la comercialización y el uso de productos
+              educativos digitales, cada uno con una función definida.</p>
+          </div>
+        </div>
+        <div class="cards">
+          <article class="gcard role fade">
+            <div class="top2"><span class="n">01</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"
+                  fill="none" stroke="#0b0f14" stroke-width="1.7">
+                  <rect x="4" y="4" width="16" height="16" rx="3" />
+                  <path d="M8 10h8M8 14h5" />
+                </svg></span></div>
+            <h3>Creador</h3>
+            <dl>
+              <div>
+                <dt>Aporta</dt>
+                <dd>Conocimiento, experiencia y contenido educativo.</dd>
+              </div>
+              <div>
+                <dt>Desarrolla</dt>
+                <dd>Cursos, masterclasses y productos digitales para su comercialización a través de los canales
+                  disponibles.</dd>
+              </div>
+            </dl>
+          </article>
+          <article class="gcard role feat fade d1">
+            <div class="top2"><span class="n">02</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"
+                  fill="none" stroke="#0f7d00" stroke-width="1.7">
+                  <circle cx="12" cy="12" r="3.5" />
+                  <circle cx="4" cy="5" r="1.8" />
+                  <circle cx="20" cy="5" r="1.8" />
+                  <circle cx="12" cy="21" r="1.8" />
+                  <path d="M5.5 6.3 9.5 9.8M18.5 6.3l-4 3.5M12 15.5v3.7" />
+                </svg></span></div>
+            <h3>Afiliado</h3>
+            <dl>
+              <div>
+                <dt>Aporta</dt>
+                <dd>Promoción y difusión de productos educativos.</dd>
+              </div>
+              <div>
+                <dt>Gestiona</dt>
+                <dd>La promoción de productos mediante enlaces o mecanismos de atribución de ventas habilitados por la
+                  plataforma.</dd>
+              </div>
+            </dl>
+            <p class="def">El afiliado promociona productos educativos y, cuando corresponde según las condiciones del
+              programa, recibe comisiones por las ventas directas que se le atribuyen. La compensación no depende del
+              reclutamiento de otros afiliados.</p>
+          </article>
+          <article class="gcard role fade d2">
+            <div class="top2"><span class="n">03</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"
+                  fill="none" stroke="#0b0f14" stroke-width="1.7">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 21c1-4.5 4-6.5 8-6.5s7 2 8 6.5" />
+                </svg></span></div>
+            <h3>Consumidor</h3>
+            <dl>
+              <div>
+                <dt>Aporta</dt>
+                <dd>Su interés y decisión de compra.</dd>
+              </div>
+              <div>
+                <dt>Accede</dt>
+                <dd>A cursos, masterclasses y otros productos educativos conforme a las condiciones de cada oferta.</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 CÓMO (negro) -->
+    <section class="sec dark como" id="como" aria-labelledby="h5c">
+      <div class="container">
+        <div class="head"><span class="kick"><b>05</b>Cómo funciona</span>
+          <h2 id="h5c" class="T">Del conocimiento al producto <span class="g">educativo digital<span
+                class="tm">™</span></span></h2>
+        </div>
+        <div class="flow" id="flow">
+          <div class="fstep"><span class="k">01</span>
+            <h3>Identifica</h3>
+            <p>Define el conocimiento, las habilidades o los temas educativos que deseas convertir en un producto
+              digital.</p>
+          </div>
+          <div class="fstep"><span class="k">02</span>
+            <h3>Crea</h3>
+            <p>Desarrolla cursos, masterclasses y otros materiales educativos dirigidos a un público específico.</p>
+          </div>
+          <div class="fstep"><span class="k">03</span>
+            <h3>Publica</h3>
+            <p>Organiza y presenta tus productos educativos mediante los canales y herramientas disponibles en
+              PROMOLIDER.</p>
+          </div>
+          <div class="fstep"><span class="k">04</span>
+            <h3>Comercializa</h3>
+            <p>Da a conocer tus productos y gestiona su comercialización. Si utilizas afiliación directa, las ventas y
+              comisiones se rigen por las condiciones correspondientes.</p>
+          </div>
+          <div class="fstep"><span class="k">05</span>
+            <h3>Optimiza</h3>
+            <p>Revisa los resultados de tus productos y mejora su presentación, contenido y procesos de
+              comercialización. <b>Evalúa los resultados y ajusta tu estrategia con base en la información
+                disponible.</b></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 PRIMER PASO (pálido) -->
+    <section class="sec pale paso center" id="primer-paso" aria-labelledby="h6p">
+      <div class="container">
+        <span class="kick"><b>06</b>Tu primer paso</span>
+        <h2 id="h6p" class="T">¿Qué puedes crear <span class="g">hoy?</span></h2>
+        <p class="P fade">Empieza por identificar un conocimiento que puedas compartir, desarrollar un producto
+          educativo y definir a qué público quieres dirigirte. Después, utiliza las herramientas disponibles para
+          presentar tu contenido y gestionar su comercialización.</p>
+        <ol class="chain fade" aria-label="Pasos para desarrollar un producto educativo">
+          <li class="node">
+            <div class="pic"><img
+                src="https://images.unsplash.com/photo-1564130987042-acbca1b51e8d?w=320&h=320&fit=crop&crop=faces&q=80"
+                alt="Persona compartiendo conocimientos frente a una pizarra" loading="lazy" width="160"
+                height="160"><span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19V6a2 2 0 0 1 2-2h12v15H6a2 2 0 0 0-2 2z" />
+                  <path d="M8 8h7M8 12h5" />
+                </svg></span></div>
+            <p class="cap"><small>Define tu</small>Conocimiento</p>
+          </li>
+          <li class="link" aria-hidden="true"><span></span></li>
+          <li class="node">
+            <div class="pic"><img
+                src="https://images.unsplash.com/photo-1715610258704-e8f9f5710fe0?w=320&h=320&fit=crop&crop=faces&q=80"
+                alt="Mujer presentando contenido ante un público" loading="lazy" width="160" height="160"><span
+                class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 21V4" />
+                  <path d="M5 4h11l-2 4 2 4H5" />
+                </svg></span></div>
+            <p class="cap"><small>Desarrolla tu</small>Producto digital</p>
+          </li>
+          <li class="link" aria-hidden="true"><span></span></li>
+          <li class="node">
+            <div class="pic"><img
+                src="https://images.unsplash.com/photo-1688397548038-f71a418e2045?w=320&h=320&fit=crop&crop=faces&q=80"
+                alt="Persona reflexionando sobre una necesidad" loading="lazy" width="160" height="160"><span
+                class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" />
+                </svg></span></div>
+            <p class="cap"><small>Identifica a tu</small>Público objetivo</p>
+          </li>
+          <li class="link to" aria-hidden="true"><span></span></li>
+          <li class="node you">
+            <div class="pic"><span class="halo"></span><span class="halo h2"></span><b>Tú</b></div>
+            <p class="cap"><small>Gestiona su</small>Comercialización</p>
+          </li>
+        </ol>
+        <p class="kicker fade"><strong>Así comienza</strong> el desarrollo de un producto digital.</p>
+      </div>
+    </section>
+
+    <!-- 07 INFRAESTRUCTURA (negro) -->
+    <section class="sec dark infra" id="infraestructura" aria-labelledby="h7i">
+      <div class="container">
+        <div class="head"><span class="kick"><b>07</b>La infraestructura</span>
+          <h2 id="h7i" class="T">La tecnología no reemplaza a las personas. <span class="g">Facilita la creación y
+              distribución de contenido.</span></h2>
+        </div>
+        <div class="tools">
+          <article class="gcard tool fade">
+            <div class="glyph" aria-hidden="true"><svg viewBox="0 0 150 150">
+                <g class="orbit-a">
+                  <rect x="67" y="4" width="16" height="16" rx="4" fill="#3a3a3c" />
+                  <rect x="130" y="67" width="16" height="16" rx="4" fill="#3a3a3c" />
+                  <rect x="4" y="67" width="16" height="16" rx="4" fill="#1AE600" />
+                </g>
+                <rect class="beat" x="45" y="45" width="60" height="60" rx="14" fill="none" stroke="#f5f5f7"
+                  stroke-width="4" />
+                <path d="M62 70h26M62 82h18" stroke="#1AE600" stroke-width="4" stroke-linecap="round" />
+              </svg></div>
+            <h3>Creator AI<span class="tm">™</span></h3>
+            <p class="claim">Transforma conocimiento en contenido digital.</p>
+            <p>Ayuda a los Creadores a estructurar sus conocimientos y preparar materiales educativos mediante
+              herramientas digitales.</p>
+          </article>
+          <article class="gcard tool fade d1">
+            <div class="glyph" aria-hidden="true"><svg viewBox="0 0 150 150">
+                <circle cx="75" cy="75" r="56" fill="none" stroke="#333336" stroke-width="4" />
+                <g class="orbit-b">
+                  <circle cx="75" cy="19" r="8" fill="#1AE600" />
+                  <circle cx="131" cy="75" r="5" fill="#f5f5f7" />
+                  <circle cx="19" cy="75" r="5" fill="#f5f5f7" />
+                </g><text x="75" y="82" text-anchor="middle" font-family="Poppins,sans-serif" font-size="22"
+                  font-weight="600" fill="#f5f5f7">24/7</text>
+              </svg></div>
+            <h3>Flow AI<span class="tm">™</span></h3>
+            <p class="claim">Facilita la distribución de recursos educativos.</p>
+            <p>Permite compartir microcursos, libros y herramientas creadas por los Creadores, y organizar el
+              seguimiento de las actividades educativas según las funcionalidades disponibles.</p>
+          </article>
+          <article class="gcard tool fade d2">
+            <div class="glyph" aria-hidden="true"><svg viewBox="0 0 150 150">
+                <path d="M75 30L42 75M75 30l33 45M42 75l-18 42M42 75l18 42M108 75l-18 42M108 75l18 42" stroke="#333336"
+                  stroke-width="3" />
+                <g class="dup">
+                  <circle cx="75" cy="30" r="11" />
+                  <circle cx="42" cy="75" r="9" />
+                  <circle cx="108" cy="75" r="9" />
+                  <circle cx="24" cy="117" r="7" />
+                  <circle cx="60" cy="117" r="7" />
+                  <circle cx="90" cy="117" r="7" />
+                  <circle cx="126" cy="117" r="7" />
+                </g>
+              </svg></div>
+            <h3>LeaderPro AI<span class="tm">™</span></h3>
+            <p class="claim">Herramientas digitales para organizar la gestión.</p>
+            <p>Facilita la coordinación de actividades, la documentación de procedimientos y la gestión del soporte
+              dentro de la plataforma.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 CO-CREACIÓN (blanco) -->
+    <section class="sec light cocrea center" id="cocreacion" aria-labelledby="h8c">
+      <div class="container">
+        <div class="head"><span class="kick"><b>08</b>Co-creación</span>
+          <h2 id="h8c" class="T">Una plataforma educativa. <strong>Desarrollada con sus creadores.</strong></h2>
+          <p class="P fade">Esta etapa permite colaborar en la mejora de las herramientas y funcionalidades de la
+            plataforma. <b>El objetivo es construir una mejor experiencia educativa.</b></p>
+        </div>
+        <p class="words" id="words">Participa en la evaluación de las herramientas, aporta sugerencias y contribuye a
+          mejorar la experiencia de quienes crean y consumen contenido educativo.</p>
+        <div class="two">
+          <div class="gcard fade">
+            <p>Buscamos personas capaces de aportar <b>experiencia, ideas y conocimientos</b> para evaluar, probar y
+              documentar funcionalidades que mejoren la creación y distribución de contenido educativo.</p>
+          </div>
+          <div class="gcard fade d1">
+            <p><b>Tu experiencia contribuye a mejorar la plataforma.</b> Tus observaciones ayudan a identificar
+              oportunidades de mejora en las herramientas y los procesos educativos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 CIERRE (negro) -->
+    <section class="sec dark cierre center" id="cierre" aria-labelledby="h9c">
+      <div class="container">
+        <span class="kick"><b>09</b>Conoce la plataforma</span>
+        <h2 id="h9c" class="T">Convierte tus conocimientos en contenido educativo. <span class="g">Descubre las
+            herramientas de PROMOLIDER.</span></h2>
+        <p class="P fade">PROMOLIDER ofrece herramientas digitales para crear, organizar y distribuir contenido
+          educativo en línea.</p>
+        <p class="P fade">Si eres creador de contenido, formador o profesional con experiencia, puedes conocer las
+          funcionalidades de la plataforma y evaluar cómo se adaptan a tus necesidades.</p>
+        <p class="opens fade">Conoce las herramientas y funcionalidades de PROMOLIDER.</p>
+        <div class="fade">
+          <!-- CTA sin destino por ahora -->
+          <a class="cta js-cta" href="#">Conocer la plataforma PROMOLIDER™<span class="knob"><svg>
+                <use href="#chev" />
+              </svg></span></a>
+          <p class="micro">Consulta las funcionalidades disponibles y las condiciones de uso antes de registrarte.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="glowf" aria-hidden="true"></div>
+    <div class="container">
+      <div class="fgrid">
+        <div class="fabout">
+          <a class="flogo" href="#inicio" aria-label="PROMOLIDER inicio"><img src="assets/logo-promolider.webp"
+              alt="Promolíder" width="138" height="36"></a>
+          <p><b>Herramientas digitales para crear y distribuir contenido educativo en línea.</b></p>
+          <p>PROMOLIDER proporciona infraestructura tecnológica para creadores de cursos, formadores y profesionales que
+            desean organizar y compartir sus conocimientos mediante productos educativos digitales.</p>
+        </div>
+        <div>
+          <h4>Enlaces útiles</h4>
+          <ul class="flinks">
+            <li><a href="https://vcr.promolider.org/login" target="_blank" rel="noopener">Aula virtual</a></li>
+            <li><a href="#infraestructura">Nuestras tecnologías</a></li>
+            <li><a href="#inicio">Sobre PROMOLIDER</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Plataformas</h4>
+          <ul class="flinks">
+            <li><a href="https://vcr.promolider.org/login" target="_blank" rel="noopener">Academia</a></li>
+            <li><a href="https://crm.promolider.org/login" target="_blank" rel="noopener">Iniciar sesión</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contáctanos</h4>
+          <a class="mail" href="mailto:informacion@promolider.org">informacion@promolider.org</a>
+          <h4 class="mt">Síguenos</h4>
+          <div class="social">
+            <a href="https://www.facebook.com/Promolider-101670701715747/" target="_blank" rel="noopener"
+              aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l.6-4H14V8.6c0-.4.3-.6.6-.6z" />
+              </svg></a>
+            <a href="https://www.instagram.com/promoliderorg/" target="_blank" rel="noopener"
+              aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor"
+                  stroke-width="2" />
+                <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2" />
+                <circle cx="17.3" cy="6.7" r="1.2" />
+              </svg></a>
+            <a href="https://www.linkedin.com/company/promol%C3%ADder/" target="_blank" rel="noopener"
+              aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <rect x="4" y="9" width="3.4" height="11" />
+                <circle cx="5.7" cy="5.5" r="2" />
+                <path
+                  d="M10 9h3.2v1.6c.6-1 1.8-1.9 3.6-1.9 3 0 3.6 2 3.6 4.5V20H17v-5.7c0-1.4-.1-2.9-1.9-2.9s-2.1 1.3-2.1 2.8V20H10z" />
+              </svg></a>
+            <a href="https://www.youtube.com/channel/UCj-NmJXOnJt55aDRh1R0LLg" target="_blank" rel="noopener"
+              aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M21.6 7.2a2.6 2.6 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.6 2.6 0 0 0 2.4 7.2 27 27 0 0 0 2 12a27 27 0 0 0 .4 4.8 2.6 2.6 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.6 2.6 0 0 0 1.8-1.8A27 27 0 0 0 22 12a27 27 0 0 0-.4-4.8zM10 15V9l5.2 3z" />
+              </svg></a>
+            <a href="https://www.tiktok.com/@promolider" target="_blank" rel="noopener" aria-label="TikTok"><svg
+                viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M16.6 3c.4 2.2 1.8 3.6 4 3.8v3.3a7.4 7.4 0 0 1-4-1.2v6.2A6 6 0 1 1 10.6 9v3.4a2.7 2.7 0 1 0 2.6 2.7V3z" />
+              </svg></a>
+          </div>
+          <div class="flegal">
+            <p><b>Promolider LLC</b><br>30 N Gould St, Ste R, Sheridan, WY 82801, USA<br>Email: <a
+                href="mailto:informacion@promolider.org">informacion@promolider.org</a></p>
+            <ul class="flinks">
+              <li><a href="terms.html">Terms of Service</a></li>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="refunds.html">Refund Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="fbottom"><span>© <span id="year"></span> Promolider LLC. All rights reserved.</span><span>Digital
+          Education &amp; SaaS Platform</span></div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.getElementById('year').textContent = new Date().getFullYear();
+      document.querySelectorAll('.js-cta').forEach(a => a.addEventListener('click', e => {if (a.getAttribute('href') === '#') e.preventDefault();}));
+      const io = new IntersectionObserver(es => es.forEach(e => {if (e.isIntersecting) {e.target.classList.add('visible'); io.unobserve(e.target);} }), {threshold: .18});
+      document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+      /* La solución: barras animadas en las tarjetas */
+      const [ma, mb] = document.querySelectorAll('.pair .meter');
+      for (let i = 0; i < 18; i++) {
+        const a = document.createElement('i'); a.style.setProperty('--h', (25 + Math.random() * 75) + '%'); a.style.animationDelay = (Math.random() * 3).toFixed(2) + 's'; ma.appendChild(a);
+        const b = document.createElement('i'); b.style.setProperty('--h', (6 + Math.pow(i / 17, 1.3) * 94) + '%'); b.style.transitionDelay = (i * .05) + 's'; mb.appendChild(b);
+      }
+
+      /* Barra lateral: el punto verde se desliza a la sección visible */
+      const rail = document.getElementById('rail'), thumb = rail.querySelector('.thumb'), rlinks = [...rail.querySelectorAll('a')];
+      const rsecs = rlinks.map(a => document.getElementById(a.dataset.s));
+      const onRail = () => {
+        const mark = innerHeight * .45; let k = 0;
+        rsecs.forEach((sec, i) => {if (sec && sec.getBoundingClientRect().top <= mark) k = i;});
+        if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) k = rsecs.length - 1;   // final de la página
+        rlinks.forEach((a, i) => {a.classList.toggle('on', i === k); if (i === k) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');});
+        thumb.style.top = rlinks[k].offsetTop + 'px';
+      };
+      onRail(); addEventListener('scroll', onRail, {passive: true}); addEventListener('resize', onRail);
+
+      /* Menú móvil */
+      const burger = document.querySelector('.burger'), mmenu = document.getElementById('mmenu');
+      const setMenu = open => {mmenu.classList.toggle('open', open); burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');};
+      burger.addEventListener('click', e => {e.stopPropagation(); setMenu(!mmenu.classList.contains('open'));});
+      document.addEventListener('click', e => {if (!mmenu.contains(e.target)) setMenu(false);});
+      document.addEventListener('keydown', e => {if (e.key === 'Escape') setMenu(false);});
+      mmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+      /* El cómo: los pasos se encienden en secuencia */
+      const fs = [...document.querySelectorAll('.fstep')]; let k = 0;
+      const step = () => {fs.forEach((f, i) => f.classList.toggle('on', i === k)); k = (k + 1) % fs.length;};
+      step(); if (!reduced) setInterval(step, 2200);
+
+      /* Co-creación: palabras */
+      const words = document.getElementById('words');
+      words.innerHTML = words.textContent.split(' ').map((w, i) => `<span class="w${i >= 9 && i <= 14 ? ' g' : ''}">${w}</span>`).join(' ');
+      const ws = [...words.querySelectorAll('.w')];
+      const onWords = () => {const r = words.getBoundingClientRect(); const p = Math.max(0, Math.min(1, (innerHeight * .85 - r.top) / (r.height + innerHeight * .35))); const n = Math.round(p * ws.length); ws.forEach((w, i) => w.classList.toggle('on', i < n));};
+      if (reduced) ws.forEach(w => w.classList.add('on')); else {onWords(); addEventListener('scroll', onWords, {passive: true});}
+    })();
+  </script>
+  <script src="assets/motion.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+:root {
+  --m-reveal: cubic-bezier(.18, .85, .26, 1);
+  --m-soft: cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Video de portada */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0
+}
+
+.has-video .hero-video {
+  opacity: 1
+}
+
+.has-video .hero-fallback {
+  opacity: 0;
+  transition: opacity 1.2s ease
+}
+
+/* Titular por líneas */
+.ln {
+  display: block;
+  overflow: hidden;
+  padding-bottom: .14em;
+  margin-bottom: -.14em
+}
+
+.ln-i {
+  display: block
+}
+
+/* Entrada (una sola vez al cargar) */
+@media (prefers-reduced-motion:no-preference) {
+  .intro .hx {
+    opacity: 0
+  }
+
+  .intro .ln-i {
+    transform: translate3d(0, 112%, 0)
+  }
+
+  @keyframes hx-rise {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 14px, 0) scale(.99)
+    }
+
+    to {
+      opacity: 1;
+      transform: none
+    }
+  }
+
+  @keyframes hx-line {
+    from {
+      transform: translate3d(0, 112%, 0)
+    }
+
+    to {
+      transform: none
+    }
+  }
+
+  .intro-play .hx {
+    animation: hx-rise .8s var(--m-soft) both;
+    animation-delay: var(--d, 0s)
+  }
+
+  .intro-play .ln-i {
+    animation: hx-line 1s var(--m-reveal) both;
+    animation-delay: var(--d, .3s)
+  }
+
+  /* Títulos de sección con máscara */
+  .m-wrap {
+    display: block;
+    overflow: hidden;
+    padding-bottom: .14em;
+    margin-bottom: -.14em
+  }
+
+  .m-in {
+    display: block;
+    transform: translate3d(0, 108%, 0);
+    transition: transform 1.1s var(--m-reveal)
+  }
+
+  .m-on .m-in {
+    transform: none
+  }
+}
