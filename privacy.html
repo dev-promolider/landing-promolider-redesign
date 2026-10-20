@@ -1,17 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="es" data-lang="es">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#EEF1F4">
-  <title>Privacy Policy — PROMOLIDER™</title>
-  <meta name="description" content="Privacy Policy — Promolider LLC.">
+  <title>Política de Privacidad / Privacy Policy — PROMOLIDER™</title>
+  <meta name="description" content="Política de Privacidad — PROMOLIDER LLC (EIN: 30-1510567).">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/legal.css">
+  <script>
+    (() => {
+      const saved = localStorage.getItem('promolider_lang') || 'es';
+      document.documentElement.setAttribute('data-lang', saved);
+    })();
+  </script>
 </head>
 
 <body>
@@ -27,10 +33,14 @@
 
   <header class="top">
     <div class="wrap">
-      <a class="brand" href="index.html" aria-label="PROMOLIDER home"><svg viewBox="0 0 200 220">
+      <a class="brand" href="index.html" aria-label="PROMOLIDER inicio"><svg viewBox="0 0 200 220">
           <use href="#pl-mark" />
         </svg>PROMOLIDER</a>
-      <a class="back" href="index.html"><svg viewBox="0 0 18 18" aria-hidden="true">
+      <a class="back lang-es" href="index.html"><svg viewBox="0 0 18 18" aria-hidden="true">
+          <path d="m11.4 3.6-6 5.4 6 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>Volver al inicio</a>
+      <a class="back lang-en" href="index.html"><svg viewBox="0 0 18 18" aria-hidden="true">
           <path d="m11.4 3.6-6 5.4 6 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" />
         </svg>Back to home</a>
@@ -38,73 +48,163 @@
   </header>
 
   <main class="wrap">
-    <nav class="tabs" aria-label="Legal"><a href="terms.html">Terms of Service</a><a href="privacy.html"
-        aria-current="page">Privacy Policy</a><a href="refunds.html">Refund Policy</a></nav>
+    <div class="legal-nav-bar">
+      <nav class="tabs" aria-label="Legal">
+        <a href="terms.html" class="lang-es">Términos de Servicio</a>
+        <a href="terms.html" class="lang-en">Terms of Service</a>
+        <a href="privacy.html" class="lang-es" aria-current="page">Política de Privacidad</a>
+        <a href="privacy.html" class="lang-en" aria-current="page">Privacy Policy</a>
+        <a href="refunds.html" class="lang-es">Política de Reembolso</a>
+        <a href="refunds.html" class="lang-en">Refund Policy</a>
+      </nav>
+      <div class="lang-switch" role="group" aria-label="Seleccionar idioma / Select language">
+        <button type="button" class="lang-btn" data-lang-btn="es" aria-label="Español">ES</button>
+        <button type="button" class="lang-btn" data-lang-btn="en" aria-label="English">EN</button>
+      </div>
+    </div>
+
     <article class="doc">
-      <h1>PRIVACY POLICY</h1>
-      <p class="upd">Last Updated: October 8, 2026</p>
-      <h2>1. INFORMATION WE COLLECT</h2>
-      <p>Promolider LLC ("we", "us", "Company") values your privacy. When you visit <a href="https://www.promolider.org"
-          target="_blank" rel="noopener">www.promolider.org</a>, register an account, or purchase services, we collect
-        personal information including:</p>
-      <ul>
-        <li>Personal Identifiers: Full name, email address, phone number, and mailing address.</li>
-        <li>Account Credentials: Usernames, encrypted passwords, and profile details.</li>
-        <li>Transaction &amp; Billing Data: Payment information processed securely via authorized third-party payment
-          processors (e.g., Stripe, Mercury). We do not store full credit card details on our servers.</li>
-        <li>Technical Data: IP addresses, browser types, device information, and usage logs via cookies and standard web
-          analytics.</li>
-      </ul>
-      <h2>2. HOW WE USE YOUR INFORMATION</h2>
-      <p>We collect and use your personal information for the following legitimate business purposes:</p>
-      <ul>
-        <li>To provide, operate, and maintain our EdTech platform and digital marketplace;</li>
-        <li>To process transactions, billing, and distribute affiliate revenue share/commissions;</li>
-        <li>To send administrative updates, account confirmations, and customer support messages;</li>
-        <li>To comply with legal obligations, anti-money laundering (AML) regulations, and financial audit standards;
-        </li>
-        <li>To prevent fraud and secure our software infrastructure.</li>
-      </ul>
-      <h2>3. DATA SHARING AND THIRD-PARTY DISCLOSURES</h2>
-      <p>Promolider LLC does not sell, rent, or trade your personal data to third parties for marketing purposes. We
-        share data only with trusted service providers strictly necessary to execute our platform operations:</p>
-      <ul>
-        <li>Payment Processors and Banking Partners (for secure payment processing and payout settlement);</li>
-        <li>Cloud Hosting &amp; Infrastructure Providers (AWS / secure servers);</li>
-        <li>Compliance and Legal Authorities (if required by valid legal subpoena, court order, or regulatory body).
-        </li>
-      </ul>
-      <h2>4. DATA SECURITY AND RETENTION</h2>
-      <p>We implement robust administrative, technical, and physical security measures (including SSL encryption and
-        access controls) to protect your personal data against unauthorized access, loss, or alteration. Data is
-        retained only as long as necessary to fulfill business services and comply with financial record-keeping laws.
-      </p>
-      <h2>5. YOUR RIGHTS AND CHOICES</h2>
-      <p>Depending on your jurisdiction, you may have rights to access, update, correct, or request deletion of your
-        personal information. To exercise any of these rights, please contact our support team at <a
-          href="mailto:informacion@promolider.org">informacion@promolider.org</a>.</p>
-      <h2>6. COOKIES</h2>
-      <p>We use essential and functional cookies to remember session settings and optimize user experience. You can
-        modify your browser settings to decline non-essential cookies.</p>
-      <h2>7. CONTACT US</h2>
-      <p>For privacy-related inquiries or data protection requests:</p>
-      <p class="addr">Promolider LLC<br>30 N Gould St, Ste R, Sheridan, WY 82801, USA<br>Email: <a
-          href="mailto:informacion@promolider.org">informacion@promolider.org</a></p>
+      <!-- VERSIÓN EN ESPAÑOL -->
+      <div class="lang-es">
+        <h1>POLÍTICA DE PRIVACIDAD</h1>
+        <p class="upd">Última actualización: 20 de octubre de 2026</p>
+
+        <h2>1. RESPONSABLE DEL TRATAMIENTO DE DATOS</h2>
+        <p>La entidad responsable del tratamiento y protección de sus datos personales recolectados a través de <a href="https://www.promolider.org" target="_blank" rel="noopener">promolider.org</a> es PROMOLIDER LLC (EIN: 30-1510567), domiciliada en 30 N Gould St, Ste R, Sheridan, WY 82801, USA. Para cualquier consulta respecto a su privacidad, puede escribir a: <a href="mailto:informacion@promolider.org">informacion@promolider.org</a>.</p>
+
+        <h2>2. INFORMACIÓN QUE RECOPILAMOS</h2>
+        <p>PROMOLIDER LLC valora su privacidad. Al visitar nuestro sitio web, registrar una cuenta o contratar servicios, recopilamos las siguientes categorías de datos personales:</p>
+        <ul>
+          <li>Identificadores personales: Nombre completo, correo electrónico, número de teléfono y dirección postal.</li>
+          <li>Credenciales de la cuenta: Nombres de usuario, contraseñas encriptadas y datos de perfil.</li>
+          <li>Datos de facturación y transacciones: Información de pago procesada de forma segura mediante pasarelas de pago autorizadas y entidades bancarias asociadas (por ejemplo, Stripe o Mercury). No almacenamos números completos de tarjetas de crédito en nuestros servidores.</li>
+          <li>Datos técnicos y de navegación: Direcciones IP, tipo de navegador, información del dispositivo y registros de actividad mediante cookies y analítica web estándar.</li>
+        </ul>
+
+        <h2>3. CÓMO UTILIZAMOS SU INFORMACIÓN</h2>
+        <p>Recopilamos y utilizamos sus datos personales para finalidades comerciales y operativas legítimas, tales como:</p>
+        <ul>
+          <li>Proveer, operar y mantener nuestra plataforma tecnológica EdTech y marketplace digital;</li>
+          <li>Procesar transacciones, gestionar facturación y liquidar comisiones de afiliados;</li>
+          <li>Enviar actualizaciones administrativas, confirmaciones de cuenta y respuestas de atención al cliente;</li>
+          <li>Cumplir con obligaciones legales, normativas sobre prevención del blanqueo de capitales (AML) y auditorías contables;</li>
+          <li>Prevenir fraudes y salvaguardar la seguridad de nuestra infraestructura tecnológica.</li>
+        </ul>
+
+        <h2>4. DESTINATARIOS Y DIVULGACIÓN A TERCEROS</h2>
+        <p>PROMOLIDER LLC no vende, arrienda ni comercializa sus datos personales a terceros para propósitos publicitarios. Únicamente compartimos datos con proveedores de servicios de confianza necesarios para ejecutar las operaciones de la plataforma:</p>
+        <ul>
+          <li>Procesadores de pago e instituciones bancarias (para cobros y liquidación de pagos seguros);</li>
+          <li>Proveedores de alojamiento e infraestructura en la nube (servidores seguros AWS);</li>
+          <li>Autoridades judiciales o administrativas cuando sea requerido por citación, orden judicial o disposición legal obligatoria.</li>
+        </ul>
+
+        <h2>5. SEGURIDAD Y RETENCIÓN DE DATOS</h2>
+        <p>Implementamos rigurosas medidas de seguridad administrativas, técnicas y físicas (incluyendo cifrado SSL y estrictos controles de acceso) para proteger sus datos personales contra accesos no autorizados, pérdida o alteración. Los datos se conservan únicamente durante el tiempo necesario para la prestación del servicio y el cumplimiento de plazos legales y fiscales.</p>
+
+        <h2>6. DERECHOS DEL TITULAR</h2>
+        <p>De acuerdo con la normativa aplicable en su jurisdicción, usted tiene derecho a acceder, rectificar, actualizar o solicitar la supresión de sus datos personales. Para ejercer cualquiera de estos derechos, contáctenos en <a href="mailto:informacion@promolider.org">informacion@promolider.org</a>.</p>
+
+        <h2>7. POLÍTICA DE COOKIES</h2>
+        <p>Empleamos cookies técnicas, esenciales y funcionales para recordar configuraciones de sesión y optimizar su experiencia de navegación. Puede configurar su navegador para rechazar cookies opcionales en cualquier momento.</p>
+
+        <h2>8. CONTACTO Y PROTECCIÓN DE DATOS</h2>
+        <p>Para consultas sobre privacidad o ejercicio de derechos sobre datos personales:</p>
+        <p class="addr"><b>PROMOLIDER LLC</b> (EIN: 30-1510567)<br>30 N Gould St, Ste R, Sheridan, WY 82801, USA<br>Email: <a
+            href="mailto:informacion@promolider.org">informacion@promolider.org</a></p>
+      </div>
+
+      <!-- ENGLISH VERSION -->
+      <div class="lang-en">
+        <h1>PRIVACY POLICY</h1>
+        <p class="upd">Last Updated: October 20, 2026</p>
+
+        <h2>1. DATA CONTROLLER &amp; LEGAL ENTITY</h2>
+        <p>The entity responsible for the processing and protection of personal data collected through <a href="https://www.promolider.org" target="_blank" rel="noopener">promolider.org</a> is PROMOLIDER LLC (EIN: 30-1510567), domiciled at 30 N Gould St, Ste R, Sheridan, WY 82801, USA. For any questions or privacy inquiries, you may contact: <a href="mailto:informacion@promolider.org">informacion@promolider.org</a>.</p>
+
+        <h2>2. INFORMATION WE COLLECT</h2>
+        <p>PROMOLIDER LLC values your privacy. When you visit <a href="https://www.promolider.org" target="_blank" rel="noopener">www.promolider.org</a>, register an account, or purchase services, we collect personal information including:</p>
+        <ul>
+          <li>Personal Identifiers: Full name, email address, phone number, and mailing address.</li>
+          <li>Account Credentials: Usernames, encrypted passwords, and profile details.</li>
+          <li>Transaction &amp; Billing Data: Payment information processed securely via authorized third-party payment processors (e.g., Stripe, Mercury). We do not store full credit card details on our servers.</li>
+          <li>Technical Data: IP addresses, browser types, device information, and usage logs via cookies and standard web analytics.</li>
+        </ul>
+
+        <h2>3. HOW WE USE YOUR INFORMATION</h2>
+        <p>We collect and use your personal information for legitimate business purposes, including:</p>
+        <ul>
+          <li>To provide, operate, and maintain our EdTech platform and digital marketplace;</li>
+          <li>To process transactions, billing, and distribute affiliate revenue share/commissions;</li>
+          <li>To send administrative updates, account confirmations, and customer support messages;</li>
+          <li>To comply with legal obligations, anti-money laundering (AML) regulations, and financial audit standards;</li>
+          <li>To prevent fraud and secure our software infrastructure.</li>
+        </ul>
+
+        <h2>4. DATA SHARING AND THIRD-PARTY DISCLOSURES</h2>
+        <p>PROMOLIDER LLC does not sell, rent, or trade your personal data to third parties for marketing purposes. We share data only with trusted service providers strictly necessary to execute our platform operations:</p>
+        <ul>
+          <li>Payment Processors and Banking Partners (for secure payment processing and payout settlement);</li>
+          <li>Cloud Hosting &amp; Infrastructure Providers (AWS / secure servers);</li>
+          <li>Compliance and Legal Authorities (if required by valid legal subpoena, court order, or regulatory body).</li>
+        </ul>
+
+        <h2>5. DATA SECURITY AND RETENTION</h2>
+        <p>We implement robust administrative, technical, and physical security measures (including SSL encryption and access controls) to protect your personal data against unauthorized access, loss, or alteration. Data is retained only as long as necessary to fulfill business services and comply with financial record-keeping laws.</p>
+
+        <h2>6. YOUR RIGHTS AND CHOICES</h2>
+        <p>Depending on your jurisdiction, you may have rights to access, update, correct, or request deletion of your personal information. To exercise any of these rights, please contact our support team at <a href="mailto:informacion@promolider.org">informacion@promolider.org</a>.</p>
+
+        <h2>7. COOKIES</h2>
+        <p>We use essential and functional cookies to remember session settings and optimize user experience. You can modify your browser settings to decline non-essential cookies.</p>
+
+        <h2>8. CONTACT US</h2>
+        <p>For privacy-related inquiries or data protection requests:</p>
+        <p class="addr"><b>PROMOLIDER LLC</b> (EIN: 30-1510567)<br>30 N Gould St, Ste R, Sheridan, WY 82801, USA<br>Email: <a
+            href="mailto:informacion@promolider.org">informacion@promolider.org</a></p>
+      </div>
     </article>
   </main>
 
   <footer>
     <div class="glowf" aria-hidden="true"></div>
     <div class="wrap">
-      <p><b>Promolider LLC</b><br>30 N Gould St, Ste R, Sheridan, WY 82801, USA<br>Email: <a
+      <p><b>PROMOLIDER LLC</b> (EIN: 30-1510567)<br>30 N Gould St, Ste R, Sheridan, WY 82801, USA<br>Email: <a
           href="mailto:informacion@promolider.org">informacion@promolider.org</a></p>
-      <nav class="flinks" aria-label="Legal"><a href="terms.html">Terms of Service</a><a href="privacy.html"
-          aria-current="page">Privacy Policy</a><a href="refunds.html">Refund Policy</a></nav>
-      <div class="fbottom"><span>© <span id="year"></span> Promolider LLC. All rights reserved.</span><span>Digital
-          Education &amp; SaaS Platform</span></div>
+      <nav class="flinks" aria-label="Legal">
+        <a href="terms.html"><span class="lang-es">Términos de Servicio</span><span class="lang-en">Terms of Service</span></a>
+        <a href="privacy.html" aria-current="page"><span class="lang-es">Política de Privacidad</span><span class="lang-en">Privacy Policy</span></a>
+        <a href="refunds.html"><span class="lang-es">Política de Reembolso</span><span class="lang-en">Refund Policy</span></a>
+      </nav>
+      <div class="fbottom">
+        <span>© <span class="footer-year"></span> PROMOLIDER LLC. <span class="lang-es">Todos los derechos reservados.</span><span class="lang-en">All rights reserved.</span></span>
+        <span>Digital Education &amp; SaaS Platform</span>
+      </div>
     </div>
   </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  <script>
+    (() => {
+      function setLanguage(lang) {
+        document.documentElement.setAttribute('data-lang', lang);
+        localStorage.setItem('promolider_lang', lang);
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+        });
+      }
+
+      document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+        btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang-btn')));
+      });
+
+      const currentLang = document.documentElement.getAttribute('data-lang') || 'es';
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === currentLang);
+      });
+
+      document.querySelectorAll('.footer-year').forEach(el => el.textContent = new Date().getFullYear());
+    })();
+  </script>
 </body>
 
 </html>

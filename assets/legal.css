@@ -283,3 +283,64 @@ footer a:hover {
     font-size: 12.5px;
     color: rgba(255, 255, 255, .4)
 }
+
+/* ==========================================================================
+   Bilingual Switcher & Controls
+   ========================================================================== */
+.legal-nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.legal-nav-bar .tabs {
+    margin-bottom: 0;
+}
+
+.lang-switch {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, .8);
+    border: 1px solid rgba(11, 15, 20, .1);
+    border-radius: 999px;
+    padding: 3px;
+    gap: 3px;
+    box-shadow: 0 2px 8px rgba(11, 15, 20, .05);
+}
+
+.lang-btn {
+    appearance: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--muted);
+    transition: all .2s cubic-bezier(.16, 1, .3, 1);
+}
+
+.lang-btn:hover {
+    color: var(--ink);
+}
+
+.lang-btn.active {
+    background: var(--ink);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(11, 15, 20, .15);
+}
+
+/* Language display toggles: default to ES if attribute not explicitly 'en' */
+html[data-lang="es"] .lang-en,
+html:not([data-lang="en"]) .lang-en {
+    display: none !important;
+}
+
+html[data-lang="en"] .lang-es {
+    display: none !important;
+}

@@ -1,17 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="es" data-lang="es">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#EEF1F4">
-  <title>Refund Policy — PROMOLIDER™</title>
-  <meta name="description" content="Refund Policy — Promolider LLC.">
+  <title>Política de Reembolso / Refund Policy — PROMOLIDER™</title>
+  <meta name="description" content="Política de Reembolso y Cancelación — PROMOLIDER LLC (EIN: 30-1510567).">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/legal.css">
+  <script>
+    (() => {
+      const saved = localStorage.getItem('promolider_lang') || 'es';
+      document.documentElement.setAttribute('data-lang', saved);
+    })();
+  </script>
 </head>
 
 <body>
@@ -27,10 +33,14 @@
 
   <header class="top">
     <div class="wrap">
-      <a class="brand" href="index.html" aria-label="PROMOLIDER home"><svg viewBox="0 0 200 220">
+      <a class="brand" href="index.html" aria-label="PROMOLIDER inicio"><svg viewBox="0 0 200 220">
           <use href="#pl-mark" />
         </svg>PROMOLIDER</a>
-      <a class="back" href="index.html"><svg viewBox="0 0 18 18" aria-hidden="true">
+      <a class="back lang-es" href="index.html"><svg viewBox="0 0 18 18" aria-hidden="true">
+          <path d="m11.4 3.6-6 5.4 6 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>Volver al inicio</a>
+      <a class="back lang-en" href="index.html"><svg viewBox="0 0 18 18" aria-hidden="true">
           <path d="m11.4 3.6-6 5.4 6 5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" />
         </svg>Back to home</a>
@@ -38,59 +48,137 @@
   </header>
 
   <main class="wrap">
-    <nav class="tabs" aria-label="Legal"><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy
-        Policy</a><a href="refunds.html" aria-current="page">Refund Policy</a></nav>
+    <div class="legal-nav-bar">
+      <nav class="tabs" aria-label="Legal">
+        <a href="terms.html" class="lang-es">Términos de Servicio</a>
+        <a href="terms.html" class="lang-en">Terms of Service</a>
+        <a href="privacy.html" class="lang-es">Política de Privacidad</a>
+        <a href="privacy.html" class="lang-en">Privacy Policy</a>
+        <a href="refunds.html" class="lang-es" aria-current="page">Política de Reembolso</a>
+        <a href="refunds.html" class="lang-en" aria-current="page">Refund Policy</a>
+      </nav>
+      <div class="lang-switch" role="group" aria-label="Seleccionar idioma / Select language">
+        <button type="button" class="lang-btn" data-lang-btn="es" aria-label="Español">ES</button>
+        <button type="button" class="lang-btn" data-lang-btn="en" aria-label="English">EN</button>
+      </div>
+    </div>
+
     <article class="doc">
-      <h1>REFUND AND CANCELLATION POLICY</h1>
-      <p class="upd">Last Updated: October 8, 2026</p>
-      <p>Thank you for choosing Promolider LLC. We strive to provide high-quality digital learning experiences and
-        software tools. Please read this policy carefully regarding refunds, cancellations, and digital subscriptions.
-      </p>
-      <h2>1. DIGITAL COURSES AND MASTERCLASSES (7-DAY MONEY-BACK GUARANTEE)</h2>
-      <p>We offer a 7-day unconditional money-back guarantee for all digital courses, masterclasses, and info-products
-        purchased directly on the Promolider LLC marketplace.</p>
-      <ul>
-        <li>Refund Window: You must request your refund within 7 calendar days from the date of initial purchase.</li>
-        <li>Eligibility: To be eligible, your access must not show abusive consumption (e.g., downloading or completing
-          100% of the material prior to requesting a refund).</li>
-        <li>Process: Email your refund request to <a
-            href="mailto:informacion@promolider.org">informacion@promolider.org</a> with your transaction details and
-          account email.</li>
-      </ul>
-      <h2>2. SAAS SUBSCRIPTIONS AND MEMBERSHIPS</h2>
-      <p>For SaaS platform access, Creator tools, and monthly/annual recurring memberships:</p>
-      <ul>
-        <li>Cancellations: You may cancel your active subscription at any time through your account settings or by
-          contacting customer support. Cancellation will stop future auto-renewals.</li>
-        <li>Subscription Refunds: Subscription payments already processed are non-refundable for past periods. You will
-          retain full access to platform features until the end of your current billing cycle.</li>
-      </ul>
-      <h2>3. PROCESSING OF REFUNDS</h2>
-      <p>Once approved, refunds are issued using the original method of payment within 5 to 10 business days, depending
-        on your card issuer or banking institution.</p>
-      <h2>4. CHARGEBACKS AND DISPUTES</h2>
-      <p>If you experience any billing issues or discrepancies, we strongly encourage you to contact Promolider LLC
-        support directly before contacting your bank. Unauthorized chargebacks will result in immediate suspension of
-        account access.</p>
-      <h2>5. CONTACT INFORMATION</h2>
-      <p>For questions or refund requests, please contact:</p>
-      <p class="addr">Promolider LLC<br>30 N Gould St, Ste R, Sheridan, WY 82801, USA<br>Email: <a
-          href="mailto:informacion@promolider.org">informacion@promolider.org</a></p>
+      <!-- VERSIÓN EN ESPAÑOL -->
+      <div class="lang-es">
+        <h1>POLÍTICA DE REEMBOLSO Y CANCELACIÓN</h1>
+        <p class="upd">Última actualización: 20 de octubre de 2026</p>
+        <p>Gracias por elegir PROMOLIDER LLC. Nos esforzamos por ofrecer experiencias de aprendizaje digital y herramientas tecnológicas de la más alta calidad. Lea atentamente esta política relativa a reembolsos, cancelaciones y suscripciones digitales.</p>
+
+        <h2>1. IDENTIFICACIÓN DE LA ENTIDAD EMISORA</h2>
+        <p>Las políticas de reembolso descritas en este documento son gestionadas directamente por PROMOLIDER LLC, registrada en EE. UU. con número de identificación fiscal EIN: 30-1510567 y domicilio en 30 N Gould St, Ste R, Sheridan, WY 82801, USA.</p>
+
+        <h2>2. CURSOS DIGITALES Y MASTERCLASSES (GARANTÍA DE REEMBOLSO DE 7 DÍAS)</h2>
+        <p>Ofrecemos una garantía incondicional de devolución de dinero de 7 días naturales para todos los cursos digitales, masterclasses y productos educativos adquiridos directamente en el marketplace de PROMOLIDER LLC.</p>
+        <ul>
+          <li>Plazo de solicitud: Debe solicitar su reembolso dentro de los 7 días naturales posteriores a la fecha inicial de compra.</li>
+          <li>Elegibilidad: Para ser admisible, el usuario no debe presentar un consumo abusivo (por ejemplo, haber completado o descargado el 100% del material antes de solicitar el reembolso).</li>
+          <li>Procedimiento: Envíe su solicitud de reembolso por correo electrónico a <a
+              href="mailto:informacion@promolider.org">informacion@promolider.org</a> incluyendo el correo de su cuenta y los detalles de la transacción.</li>
+        </ul>
+
+        <h2>3. SUSCRIPCIONES SAAS Y MEMBRESÍAS</h2>
+        <p>Para el acceso a la plataforma SaaS, herramientas de creador y membresías recurrentes mensuales o anuales:</p>
+        <ul>
+          <li>Cancelaciones: Puede cancelar su suscripción activa en cualquier momento a través de la configuración de su cuenta o contactando a soporte al cliente. La cancelación detendrá futuras renovaciones automáticas.</li>
+          <li>Reembolsos de suscripción: Los pagos de suscripción ya procesados no son reembolsables para períodos pasados. Conservará acceso total a las funcionalidades contratadas hasta la finalización de su ciclo de facturación vigente.</li>
+        </ul>
+
+        <h2>4. PROCESAMIENTO DE REEMBOLSOS</h2>
+        <p>Una vez aprobado el reembolso, se procesará utilizando el método de pago original en un plazo de 5 a 10 días hábiles, sujeto a los tiempos de respuesta de su entidad bancaria o emisora de tarjeta.</p>
+
+        <h2>5. CONTRACARGOS Y RESOLUCIÓN DE DISPUTAS</h2>
+        <p>Si experimenta cualquier discrepancia o problema con su facturación, le recomendamos encarecidamente contactar primero al equipo de soporte de PROMOLIDER LLC antes de iniciar una disputa bancaria. Los contracargos no autorizados darán lugar a la suspensión inmediata del acceso a la cuenta.</p>
+
+        <h2>6. INFORMACIÓN DE CONTACTO</h2>
+        <p>Para dudas, consultas o solicitudes de reembolso:</p>
+        <p class="addr"><b>PROMOLIDER LLC</b> (EIN: 30-1510567)<br>30 N Gould St, Ste R, Sheridan, WY 82801, USA<br>Email: <a
+            href="mailto:informacion@promolider.org">informacion@promolider.org</a></p>
+      </div>
+
+      <!-- ENGLISH VERSION -->
+      <div class="lang-en">
+        <h1>REFUND AND CANCELLATION POLICY</h1>
+        <p class="upd">Last Updated: October 20, 2026</p>
+        <p>Thank you for choosing PROMOLIDER LLC. We strive to provide high-quality digital learning experiences and software tools. Please read this policy carefully regarding refunds, cancellations, and digital subscriptions.</p>
+
+        <h2>1. ISSUING ENTITY IDENTIFICATION</h2>
+        <p>The refund policies described in this document are managed directly by PROMOLIDER LLC, registered in the USA with Employer Identification Number (EIN): 30-1510567 and domicile at 30 N Gould St, Ste R, Sheridan, WY 82801, USA.</p>
+
+        <h2>2. DIGITAL COURSES AND MASTERCLASSES (7-DAY MONEY-BACK GUARANTEE)</h2>
+        <p>We offer a 7-day unconditional money-back guarantee for all digital courses, masterclasses, and info-products purchased directly on the PROMOLIDER LLC marketplace.</p>
+        <ul>
+          <li>Refund Window: You must request your refund within 7 calendar days from the date of initial purchase.</li>
+          <li>Eligibility: To be eligible, your access must not show abusive consumption (e.g., downloading or completing 100% of the material prior to requesting a refund).</li>
+          <li>Process: Email your refund request to <a
+              href="mailto:informacion@promolider.org">informacion@promolider.org</a> with your transaction details and account email.</li>
+        </ul>
+
+        <h2>3. SAAS SUBSCRIPTIONS AND MEMBERSHIPS</h2>
+        <p>For SaaS platform access, Creator tools, and monthly/annual recurring memberships:</p>
+        <ul>
+          <li>Cancellations: You may cancel your active subscription at any time through your account settings or by contacting customer support. Cancellation will stop future auto-renewals.</li>
+          <li>Subscription Refunds: Subscription payments already processed are non-refundable for past periods. You will retain full access to platform features until the end of your current billing cycle.</li>
+        </ul>
+
+        <h2>4. PROCESSING OF REFUNDS</h2>
+        <p>Once approved, refunds are issued using the original method of payment within 5 to 10 business days, depending on your card issuer or banking institution.</p>
+
+        <h2>5. CHARGEBACKS AND DISPUTES</h2>
+        <p>If you experience any billing issues or discrepancies, we strongly encourage you to contact PROMOLIDER LLC support directly before contacting your bank. Unauthorized chargebacks will result in immediate suspension of account access.</p>
+
+        <h2>6. CONTACT INFORMATION</h2>
+        <p>For questions or refund requests, please contact:</p>
+        <p class="addr"><b>PROMOLIDER LLC</b> (EIN: 30-1510567)<br>30 N Gould St, Ste R, Sheridan, WY 82801, USA<br>Email: <a
+            href="mailto:informacion@promolider.org">informacion@promolider.org</a></p>
+      </div>
     </article>
   </main>
 
   <footer>
     <div class="glowf" aria-hidden="true"></div>
     <div class="wrap">
-      <p><b>Promolider LLC</b><br>30 N Gould St, Ste R, Sheridan, WY 82801, USA<br>Email: <a
+      <p><b>PROMOLIDER LLC</b> (EIN: 30-1510567)<br>30 N Gould St, Ste R, Sheridan, WY 82801, USA<br>Email: <a
           href="mailto:informacion@promolider.org">informacion@promolider.org</a></p>
-      <nav class="flinks" aria-label="Legal"><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy
-          Policy</a><a href="refunds.html" aria-current="page">Refund Policy</a></nav>
-      <div class="fbottom"><span>© <span id="year"></span> Promolider LLC. All rights reserved.</span><span>Digital
-          Education &amp; SaaS Platform</span></div>
+      <nav class="flinks" aria-label="Legal">
+        <a href="terms.html"><span class="lang-es">Términos de Servicio</span><span class="lang-en">Terms of Service</span></a>
+        <a href="privacy.html"><span class="lang-es">Política de Privacidad</span><span class="lang-en">Privacy Policy</span></a>
+        <a href="refunds.html" aria-current="page"><span class="lang-es">Política de Reembolso</span><span class="lang-en">Refund Policy</span></a>
+      </nav>
+      <div class="fbottom">
+        <span>© <span class="footer-year"></span> PROMOLIDER LLC. <span class="lang-es">Todos los derechos reservados.</span><span class="lang-en">All rights reserved.</span></span>
+        <span>Digital Education &amp; SaaS Platform</span>
+      </div>
     </div>
   </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  <script>
+    (() => {
+      function setLanguage(lang) {
+        document.documentElement.setAttribute('data-lang', lang);
+        localStorage.setItem('promolider_lang', lang);
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+        });
+      }
+
+      document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+        btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang-btn')));
+      });
+
+      const currentLang = document.documentElement.getAttribute('data-lang') || 'es';
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === currentLang);
+      });
+
+      document.querySelectorAll('.footer-year').forEach(el => el.textContent = new Date().getFullYear());
+    })();
+  </script>
 </body>
 
 </html>
