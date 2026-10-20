@@ -11,7 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/legal.css">
+  <link rel="stylesheet" href="assets/legal.css?v=1.1">
+  <style>
+    html[data-lang="es"] .lang-en,
+    html:not([data-lang="en"]) .lang-en { display: none !important; }
+    html[data-lang="en"] .lang-es { display: none !important; }
+  </style>
   <script>
     (() => {
       const saved = localStorage.getItem('promolider_lang') || 'es';
